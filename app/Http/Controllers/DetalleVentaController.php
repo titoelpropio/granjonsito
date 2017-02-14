@@ -13,11 +13,11 @@ use Hash;
 
 class DetalleVentaController extends Controller
 {
-  public function __construct() {
+ /* public function __construct() {
      $this->middleware('auth');
      $this->middleware('admin');
       $this->middleware('auth',['only'=>'admin']);
-  }
+  }*/
   
   function index(){
     $caja_deposito=DB::select("SELECT caja_deposito.id_tipo_caja,tipo_caja.tipo,caja_deposito.cantidad_caja,(caja_deposito.cantidad_maple)as cant_maple,tipo_caja.cantidad_maple from caja_deposito,tipo_caja WHERE caja_deposito.id_tipo_caja=tipo_caja.id order by tipo_caja.id");

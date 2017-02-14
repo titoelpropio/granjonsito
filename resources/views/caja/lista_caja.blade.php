@@ -15,11 +15,10 @@
 </div>
 
 
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
  <div class="pull-left">    <font size="6">LISTA DE CAJAS </font> <font size="6" id="fecha"> </font></div>
 
- <div class="pull-right"> 
-
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 pull-right">
+ 
     <div class="col-sm-1 col-md-1  col-sm-1  col-xs-12 pull-right" style="width: 13%; margin: 0px; padding: 0px">
       <div class="form-group"> <button class="btn btn-danger" onclick=" cargar_lista_caja()">MOSTRAR</button> </div>
     </div>
@@ -65,8 +64,6 @@
         <tbody id="datos_c1">
         </tbody>
     </table>
-
-</div>
 
 {!!Html::script('js/caja.js')!!} 
 @endsection

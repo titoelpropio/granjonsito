@@ -15,7 +15,8 @@ $contador_consumo2=0;//cuenta el array consumo para desactivar el boton control 
 $total_consumo2=count($consumo2);
 $contador_v=0;
 $contador_v2=0;
-
+$auxdias=0;
+$dias=0;
 ?>
 
 <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
@@ -100,21 +101,37 @@ and control_alimento.id_alimento=alimento.id and control_alimento.deleted_at IS 
                   for ($i=$x; $i <=$gal->numero;  $i++) { 
                     if ($i!=$gal->numero) {echo " <td colspan=2 class=xl83 style='border-left:none; width:10.75%'></td>"; } 
                     else{ 
-                      if (count($lista2)!=0 && $contador_v<count($lista2)) {
-                        //echo $lista2[0][0]->galpon;
-                      //echo count($lista2);
-                      
-                       if ($lista2[$contador_v][0]->galpon==$gal->numero) {
-                     
+                      if (count($lista2)!=0 && $contador_v<count($lista2)) {//
+                       if ($lista2[$contador_v][0]->galpon==$gal->numero) {                     
+                      for ($j=0; $j <count($lista2[$contador_v]) ; $j++) { 
+                       $dias= $lista2[$contador_v][$j]->dias;
+                           if ($j-1>=0) {//CUNADO TIENE MAS DE UNA VACUNA
+                            if ($lista2[$contador_v][$j-1]->dias==$dias) {
+                                 if ($lista2[$contador_v][$j]->dias==0) {
 
-                          if ($lista2[$contador_v][0]->dias==0) {
-                           echo "<td colspan=2 class=xl83 style='border-left:none; width:10.75%'><font size=3><span id='vacuna".$gal->numero."'>".$lista2[$contador_v][0]->nombre."</span> Días:<span id='dias".$gal->numero."' style='color:red'>HOY</span></font></td>";
+                           echo "<font size=3> <button class='btn-sm btn-info' id='vacuna".$lista2[$contador_v][$j]->id."' onclick='cargar_id_control_vacuna(".$lista2[$contador_v][$j]->id_control_vacuna.",".$lista2[$contador_v][$j]->precio.")' data-toggle='modal' data-target='#myModalConsumo'>".$lista2[$contador_v][$j]->nombre."</button></font>";
                           }
                           else{
-                            echo "<td colspan=2 class=xl83 style='border-left:none; width:10.75%'><font size=3><span id='vacuna".$gal->numero."'>".$lista2[$contador_v][0]->nombre."</span> Días:<span id='dias".$gal->numero."' style='color:red'>".$lista2[$contador_v][0]->dias."</span></font></td>";
+                            echo "<font size=3> <button class='btn-sm btn-info' id='vacuna".$lista2[$contador_v][$j]->id."' onclick='cargar_id_control_vacuna(".$lista2[$contador_v][$j]->id_control_vacuna.",".$lista2[$contador_v][$j]->precio.")' data-toggle='modal' data-target='#myModalConsumo'>".$lista2[$contador_v][$j]->nombre."</button></font>";
+                          }
+                            }
+                            }else{
+                            if ($j==0) {//AQUI SE ENTRA CUANDO ES LA PRIMERA VACUNA
+                               if ($lista2[$contador_v][$j]->dias==0) {
+                           echo "<td colspan=2 class=xl83 style='border-left:none; width:10.75%'><font size=3>Días:<span id='dias".$gal->numero."' style='color:red'>HOY</span> 
+                          <button class='btn-sm btn-info' id='vacuna".$lista2[$contador_v][$j]->id."' onclick='cargar_id_control_vacuna(".$lista2[$contador_v][$j]->id_control_vacuna.",".$lista2[$contador_v][$j]->precio.")' data-toggle='modal' data-target='#myModalConsumo'>".$lista2[$contador_v][$j]->nombre."</button>
+                           </font>";  // <span id='vacuna".$gal->numero."'>".$lista2[$contador_v][$j]->nombre."</span>, 
+                          }
+                          else{
+                            echo "<td colspan=2 class=xl83 style='border-left:none; width:10.75%'><font size=3> Días:<span id='dias".$gal->numero."' style='color:red'>".$lista2[$contador_v][$j]->dias."</span>  <button class='btn-sm btn-info' id='vacuna".$lista2[$contador_v][$j]->id."' onclick='cargar_id_control_vacuna(".$lista2[$contador_v][$j]->id_control_vacuna.",".$lista2[$contador_v][$j]->precio.")' data-toggle='modal' data-target='#myModalConsumo'>".$lista2[$contador_v][$j]->nombre."</button></font>";
                           }
 
-$contador_v++;
+
+                            }
+                            }
+                            }
+                            echo "</td>";
+                         $contador_v++;
 //echo $contador_v;
   
                       }
@@ -438,7 +455,39 @@ if (count($control)!=0) {
                       //echo count($lista2[$i]->galpon);
                       if (count($lista3)!=0 && $contador_v2<count($lista3)) {
                        if ($lista3[$contador_v2][0]->galpon==$gal->numero) {
-                          if ($lista3[$contador_v2][0]->dias==0) {
+
+
+                      for ($j=0; $j <count($lista3[$contador_v2]) ; $j++) { 
+                       $dias= $lista3[$contador_v2][$j]->dias;
+                           if ($j-1>=0) {//CUNADO TIENE MAS DE UNA VACUNA
+                            if ($lista3[$contador_v2][$j-1]->dias==$dias) {
+                                 if ($lista3[$contador_v2][$j]->dias==0) {
+
+                           echo "<font size=3> <button class='btn-sm btn-info' id='vacuna".$lista3[$contador_v2][$j]->id."' onclick='cargar_id_control_vacuna(".$lista3[$contador_v2][$j]->id_control_vacuna.",".$lista3[$contador_v2][$j]->precio.")' data-toggle='modal' data-target='#myModalConsumo'>".$lista3[$contador_v2][$j]->nombre."</button></font>";
+                          }
+                          else{
+                            echo "<font size=3> <button class='btn-sm btn-info' id='vacuna".$lista3[$contador_v2][$j]->id."' onclick='cargar_id_control_vacuna(".$lista3[$contador_v2][$j]->id_control_vacuna.",".$lista3[$contador_v2][$j]->precio.")' data-toggle='modal' data-target='#myModalConsumo'>".$lista3[$contador_v2][$j]->nombre."</button></font>";
+                          }
+                            }
+                            }else{
+                            if ($j==0) {//AQUI SE ENTRA CUANDO ES LA PRIMERA VACUNA
+                               if ($lista3[$contador_v2][$j]->dias==0) {
+                           echo "<td colspan=2 class=xl83 style='border-left:none; width:10.75%'><font size=3>Días:<span id='dias".$gal->numero."' style='color:red'>HOY</span> 
+                          <button class='btn-sm btn-info' id='vacuna".$lista3[$contador_v2][$j]->id."' onclick='cargar_id_control_vacuna(".$lista3[$contador_v2][$j]->id_control_vacuna.",".$lista3[$contador_v2][$j]->precio.")' data-toggle='modal' data-target='#myModalConsumo'>".$lista3[$contador_v2][$j]->nombre."</button>
+                           </font>"; 
+                          }
+                          else{
+                            echo "<td colspan=2 class=xl83 style='border-left:none; width:10.75%'><font size=3> Días:<span id='dias".$gal->numero."' style='color:red'>".$lista3[$contador_v2][$j]->dias."</span>  <button class='btn-sm btn-info' id='vacuna".$lista3[$contador_v2][$j]->id."' onclick='cargar_id_control_vacuna(".$lista3[$contador_v2][$j]->id_control_vacuna.",".$lista3[$contador_v2][$j]->precio.")' data-toggle='modal' data-target='#myModalConsumo'>".$lista3[$contador_v2][$j]->nombre."</button></font>";
+                          }
+
+
+                            }
+                            }
+                            }
+                            echo "</td>";
+                         $contador_v2++;
+
+                         /* if ($lista3[$contador_v2][0]->dias==0) {
                            echo "<td colspan=2 class=xl83 style='border-left:none; width:10.75%'><font size=3><span id='vacuna".$gal->numero."'>".$lista3[$contador_v2][0]->nombre."</span> Días:<span id='dias".$gal->numero."' style='color:red'>HOY</span></font></td>";
                           }
                           else{
@@ -446,7 +495,7 @@ if (count($control)!=0) {
                           }
                     
 
-                    $contador_v2++;
+                    $contador_v2++;*/
                       } 
                       else{
                         echo " <td colspan=2 class=xl83 style='border-left:none; width:10.75%'></td>";

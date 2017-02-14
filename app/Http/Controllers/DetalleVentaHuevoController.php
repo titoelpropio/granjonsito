@@ -12,11 +12,11 @@ use DB;
 use Hash;
 class DetalleVentaHuevoController extends Controller
 {
-  public function __construct() {
+  /*public function __construct() {
      $this->middleware('auth');
      $this->middleware('admin');
       $this->middleware('auth',['only'=>'admin']);
-  }
+  }*/
   
   function index(){
     $huevo_deposito=DB::select("SELECT huevo_deposito.id_tipo_huevo,tipo_huevo.tipo,huevo_deposito.cantidad_maple,huevo_deposito.cantidad_huevo from huevo_deposito,tipo_huevo WHERE huevo_deposito.id_tipo_huevo=tipo_huevo.id");

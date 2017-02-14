@@ -13,7 +13,7 @@
 		@foreach($users as $user)
 			<TR align=center>
 				<td>{{$user->email}}</td>
-				<td>{{$user->pass2}}</td>
+				<td>{{$user->password}}</td>
 				<td>
 				<button class="btn btn-danger" onclick="eliminar_usuario({{$user->id}})">ELIMINAR</button>
 				</td>

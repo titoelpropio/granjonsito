@@ -1,7 +1,7 @@
 @extends ('layouts.admin')
 @section ('content')
 @include('alerts.cargando')
-<div class="pull-left"><h1><b>VENTA DE MAPLES</b></h1></div>
+<div class="pull-left"><h1><b>VENTA DE HUEVOS DESCARTES</b></h1></div>
 <br><br><br>
 {!!Form::open(array('url'=>'ventahuevo','method'=>'POST','autocomplete'=>'off'))!!}
  {{Form::token()}} 
@@ -32,7 +32,7 @@
 
     <div class="col-lg-3 col-sm-3 col-xs-12" >
         <div class="form-group" >
-            <label>CACNTIDAD DE MAPLE:</label><br>
+            <label>CANTIDAD DE MAPLE:</label><br>
             <input type="text" size="3" onkeypress="return bloqueo_de_punto(event)" style="font-size: 20px; text-align:center" id="cantidad_maples">
             <button id="bt_add" type="button" class="btn btn-success" onclick="agregar_maple()"><i class="fa fa-plus-square" aria-hidden="true"></i></button>
          </div>

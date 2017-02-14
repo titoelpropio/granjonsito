@@ -26,14 +26,16 @@ class CriaRecriaController extends Controller {
     $temperatura=DB::select("select temperatura from temperatura"); 
     $contador=0;
     for ($i=0; $i < count($cria_recria) ; $i++) { //este es para las vacunas de los galpones 1-8
-        $verificar=DB::select("SELECT vacuna.id, vacuna.edad,vacuna.nombre,vacuna.detalle,".$cria_recria[$i]->numero_fase." as galpon,(vacuna.edad - ".$cria_recria[$i]->edad.") AS dias FROM vacuna WHERE vacuna.edad>=".$cria_recria[$i]->edad." AND vacuna.estado=1 order by edad LIMIT 1");   
-      
+        $verificar=DB::select("SELECT control_vacuna.id as id_control_vacuna,vacuna.precio,vacuna.id, vacuna.edad,vacuna.nombre,vacuna.detalle,".$cria_recria[$i]->numero_fase." as galpon,(vacuna.edad - ".$cria_recria[$i]->edad.") AS dias FROM vacuna,control_vacuna,edad WHERE edad.id=control_vacuna.id_edad AND vacuna.id=control_vacuna.id_vacuna AND vacuna.edad>=".$cria_recria[$i]->edad." AND control_vacuna.estado=1 AND edad.id=".$cria_recria[$i]->id_edad."  ORDER BY dias");
+
+          /*SELECT vacuna.id, vacuna.edad,vacuna.nombre,vacuna.detalle,".$cria_recria[$i]->numero_fase." as galpon,(vacuna.edad - ".$cria_recria[$i]->edad.") AS dias FROM vacuna WHERE vacuna.edad>=".$cria_recria[$i]->edad." AND vacuna.estado=1 order by edad LIMIT 1");  */
         if (count($verificar) != 0) {
             $lista2[$contador] = $verificar;
             $contador++;
         }
           
     }  
+ 
     DB::commit();
     return view('cria-recria.index', compact('lista2','temperatura','cria_recria','gallina_muerta','consumo'));
   } catch (Exception $e) {

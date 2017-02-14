@@ -27,6 +27,7 @@ class VacunaCreateRequest extends Request
             'edad'=>'required',
             'nombre'=>'required',
             'detalle'=>'required',
+            'precio'=>'required',
         ];
     }
 }

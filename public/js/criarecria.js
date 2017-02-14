@@ -341,3 +341,37 @@ function vacunas(){
         $('#loading').css("display","none");
     }); 
 }
+
+function cargar_id_control_vacuna(id_control,precio){
+    $("#cantidad_vac").val(1);
+      $('#loading').css("display","block"); 
+    $("#precio").val(precio);
+    $("#precio_aux").val(precio);
+    $("#id_control_vacuna").val(id_control);
+    $.get("verificar_consumo_vacuna/"+id_control,function(res){
+        $("#mensaje_vacuna").text(res.mensaje);
+        
+        if (res.mensaje=="¿DESEA CONSUMIR ESTA VACUNA?") {
+
+            $("#espacio").css({'background':'#A9F5F2'});
+        }
+        else{
+            $("#espacio").css({'background':'#F5A9A9'});
+        }
+
+          $('#loading').css("display","none"); 
+        
+    });
+  
+}
+
+function calcular(){
+    if ($("#cantidad_vac").val()=="") {
+        $("#precio").val("");        
+        $("#btn_consumir").hide();
+    } else {
+        var dato = (parseFloat($("#cantidad_vac").val()) * parseFloat($("#precio_aux").val())).toFixed(2);
+        $("#precio").val(dato);
+        $("#btn_consumir").show();
+    }
+}

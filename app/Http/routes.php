@@ -50,18 +50,37 @@ Route::get('vacunagalpon','VacunaController@vacunagalpon');
 Route::get('galponavacunar','VacunaController@galponavacunar');//lista de galpon a vacunar
 Route::get('vacunaestado','VacunaController@cambiarestado');
 Route::resource('vacuna','VacunaController');
+Route::get('agregar_listavacuna/{id_edad}','VacunaController@agregar_listavacuna');//lista de vacuna para el select en el modal del formulario vacunagalpon
+Route::get('lista_vacuna/{id_edad}','VacunaController@lista_vacuna');//lista de vacuna para el select en el modal del formulario vacunagalpon
 
-//capturargalpon para traspaso
-//Route::get('capturagalponcria','TraspasoController@getgalponcria');
-//Route::get('capturagalponponedora','TraspasoController@getgalponponedora');
+
+//CONTROL VACUNAS
+Route::resource('control_vacuna','ControlVacunaController');
+Route::get('control_vacuna_2','ControlVacunaController@store_2');
+Route::get('lista_control_vacuna','ControlVacunaController@lista_control_vacuna');
+Route::get('ver_control_vacuna/{id_edad}','ControlVacunaController@ver_control_vacuna');
+Route::get('select_control_vacuna_ponedora','ControlVacunaController@select_control_vacuna_ponedora');
+Route::get('select_control_vacuna_fase','ControlVacunaController@select_control_vacuna_fase');
+Route::get('verificar_consumo_vacuna/{id_control_vac}','GalponController@verificar_consumo_vacuna');
+
 
 //CATEGORIA
 Route::resource('categoria','CategoriaController');
 
 //EGRESO
 Route::resource('egreso','EgresoController');
+Route::get('lista_egreso','EgresoController@lista_egreso'); //AUMENTE ESTA RUTA
+Route::get('egreso_lista/{fecha_inicio}/{fecha_fin}','EgresoController@egreso_lista');
+Route::get('actualizar_egreso/{id}','EgresoController@actualizar_egreso'); //AUMENTE ESTA RUTA
+Route::get('select_egreso/{id}','EgresoController@select_egreso'); //AUMENTE ESTA RUTA
+
 //INGRESO
 Route::resource('ingreso','IngresoController');
+Route::get('lista_ingreso','IngresoController@lista_ingreso'); //AUMENTE ESTA RUTA
+Route::get('ingreso_lista/{fecha_inicio}/{fecha_fin}','IngresoController@ingreso_lista');
+Route::get('actualizar_ingreso/{id}','IngresoController@actualizar_ingreso'); //AUMENTE ESTA RUTA
+Route::get('select_ingreso/{id}','IngresoController@select_ingreso'); //AUMENTE ESTA RUTA
+
 
 //compra
 Route::resource('compra','CompraController');
@@ -69,7 +88,7 @@ Route::resource('reporte_compra','CompraController@reporte_compra');
 Route::get('lista_reporte_compra/{fecha_inicio}/{fecha_fin}','CompraController@lista_reporte_compra');
 Route::get('obtener_compra','CompraController@obtener_compra'); //AUMENTE ESTA RUTA
 Route::get('lista_compra','CompraController@lista_compra'); //AUMENTE ESTA RUTA
-Route::get('anular_compra/{fecha}','CompraController@anular_compra'); //AUMENTE ESTA RUTA
+Route::get('anular_compra/{fecha_inicio}/{fecha_fin}','CompraController@anular_compra'); //AUMENTE ESTA RUTA
 
 
 //temperatura
@@ -93,12 +112,25 @@ Route::get('lista_reporte_maple_total/{fecha_inicio}/{fecha_fin}','CajaControlle
 Route::resource('sobrante','SobranteController');
 
 //RANGOS EDAD Y TEMPERATURA
+/*Route::resource('rango','RangoController');
+Route::resource('rango_edad','RangoController@store_edad');
+Route::resource('rango_temperatura','RangoController@store_temperatura');
+Route::resource('rango_edades','RangoController@rango_edades');
+Route::resource('eliminar_edad','RangoController@destroy_edad');
+Route::resource('eliminar_temperatura','RangoController@destroy_temperatura');*/
 Route::resource('rango','RangoController');
 Route::resource('rango_edad','RangoController@store_edad');
 Route::resource('rango_temperatura','RangoController@store_temperatura');
 Route::resource('rango_edades','RangoController@rango_edades');
 Route::resource('eliminar_edad','RangoController@destroy_edad');
 Route::resource('eliminar_temperatura','RangoController@destroy_temperatura');
+Route::get('cargar_tabla_redad','RangoController@cargar_tabla_redad');
+Route::get('cargar_tabla_rtemperatura','RangoController@cargar_tabla_rtemperatura');
+Route::get('cargarDatosEdad/{id}','RangoController@cargarDatosEdad');
+Route::get('cargarDatosTemp/{id}','RangoController@cargarDatosTemp');
+Route::get('actualizarEdad','RangoController@actualizarEdad');
+Route::get('actualizarTemperatura','RangoController@actualizarTemperatura');
+
 
 
 //TIPO MAPLE
@@ -264,6 +296,7 @@ Route::get('huevo_deposito','CajaDepositoController@huevo_deposito');
 
 //VENTA CAJA
 Route::resource('ventacaja','VentaCajaController');
+Route::get('venta_caja_lista/{fecha_inicio}/{fecha_fin}','VentaCajaController@venta_caja_lista');
 Route::resource('detalle_venta','DetalleVentaController');
 Route::get('venta_baja','VentaCajaController@update_venta');
 Route::get('dato_caja_acumulado_venta/{tipe}','VentaCajaController@obtener_datos_acumulado_venta');
@@ -282,6 +315,7 @@ Route::get('obtener_password','CajaDepositoController@obtener_contra');
 
 //VENTA HUEVO
 Route::resource('ventahuevo','VentaHuevoController');
+Route::get('venta_huevo_lista/{fecha_inicio}/{fecha_fin}','VentaHuevoController@venta_huevo_lista');
 Route::resource('detalleventahuevo','DetalleVentaHuevoController');
 Route::get('dato_caja_acumulado_venta/{tipe}','VentaCajaController@obtener_datos_acumulado_venta');
 Route::get('obtener_id_venta_huevo_ultimo','VentaHuevoController@obtener_id_venta_huevo');

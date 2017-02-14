@@ -23,7 +23,7 @@ class Vacuna  extends Model implements AuthenticatableContract,
 
 
 
- protected $fillable = ['id','edad','nombre', 'detalle','estado'];
+ protected $fillable = ['id','edad','nombre', 'detalle','estado','precio'];
 
 protected $dates = ['deleted_at'];
 

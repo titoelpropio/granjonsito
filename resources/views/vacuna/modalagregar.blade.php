@@ -22,6 +22,11 @@
           {!!Form::label('detalle','Metodo De Aplicacion:')!!}
           {!!Form::textarea('detalle',null,['id'=>'detalle','class'=>'form-control','rows'=>'3','placeholder'=>'Ingresa El Metodo De Aplicacion'])!!}
       </div>
+
+      <div class="form-group">
+          {!!Form::label('precio','Precio:')!!}
+          {!!Form::text('precio',null,['id'=>'precio','class'=>'form-control','rows'=>'3','placeholder'=>'Ingrese El Precio','onkeypress'=>'return numerosmasdecimal(event)'])!!}
+      </div>
     {!!Form::hidden('estado',1,['id'=>'estado','class'=>'form-control','placeholder'=>'Estado'])!!}    
   </div>
 

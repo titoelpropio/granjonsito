@@ -11,11 +11,11 @@ use DB;
 use Hash;
 class CompraController extends Controller
 {
-  public function __construct() {
+  /*public function __construct() {
      $this->middleware('auth');
      $this->middleware('admin');
       $this->middleware('auth',['only'=>'admin']);
-  }
+  }*/
 
   function index(){
      $silo=DB::select("SELECT silo.id,silo.nombre,silo.capacidad,silo.cantidad,alimento.tipo,silo.cantidad_minima from silo,alimento WHERE silo.id_alimento=alimento.id and silo.estado=1");
@@ -76,8 +76,9 @@ class CompraController extends Controller
       return view('compra.anular_compra');
   }
 
-  public function anular_compra($fecha){ 
-     $comrpa=DB::select("SELECT silo.id as id_silo,compra.id as id_compra,alimento.id as id_alimento,silo.nombre as nombre_silo,silo.capacidad,silo.cantidad,alimento.nombre,alimento.tipo,compra.precio_compra,compra.cantidad_total,compra.fecha from compra,silo,alimento WHERE silo.id_alimento=alimento.id AND compra.id_silo=silo.id AND Date_format(compra.fecha,'%Y/%M/%d')=Date_format('".$fecha."','%Y/%M/%d') and compra.deleted_at is null");
+  public function anular_compra($fecha_inicio,$fecha_fin){ 
+     $comrpa=DB::select("SELECT silo.id as id_silo,compra.id as id_compra,alimento.id as id_alimento,silo.nombre as nombre_silo,silo.capacidad,silo.cantidad,alimento.nombre,alimento.tipo,compra.precio_compra,compra.cantidad_total,compra.fecha from compra,silo,alimento WHERE silo.id_alimento=alimento.id AND compra.id_silo=silo.id AND Date_format(compra.fecha,'%Y/%M/%d') BETWEEN Date_format('".$fecha_inicio."','%Y/%M/%d') and Date_format('".$fecha_fin."','%Y/%M/%d')  and compra.deleted_at is null");
+      /*"SELECT silo.id as id_silo,compra.id as id_compra,alimento.id as id_alimento,silo.nombre as nombre_silo,silo.capacidad,silo.cantidad,alimento.nombre,alimento.tipo,compra.precio_compra,compra.cantidad_total,compra.fecha from compra,silo,alimento WHERE silo.id_alimento=alimento.id AND compra.id_silo=silo.id AND Date_format(compra.fecha,'%Y/%M/%d')=Date_format('".$fecha."','%Y/%M/%d') and compra.deleted_at is null");*/
       return response()->json($comrpa);
   }
 }

@@ -21,14 +21,20 @@
                 <th><center>CANTIDAD DE CAJAS</center></th>
                 <th><center>SALDO</center></th>
                 </thead>
-
-                <tbody id="datos">
-                </tbody>
+                @if(Auth::user()==null) 
+                  <tbody id="datos" data-status=0> </tbody>
+                @endif  
+                
+                @if(Auth::user()!=null) 
+                  <tbody id="datos" data-status=1> </tbody>
+                @endif                  
 
                 <tr align="center" style="background-color: #f1948a">
                 	<td>TOTAL</td>
-                	<td> <font size="4" id="total_caja"></font><font size="4"></font> </td>                   
+                	<td> <font size="4" id="total_caja"></font><font size="4"></font> </td>  
+                @if(Auth::user()!=null) 
                     <td><font size="4" id="total"></font><font size="4"> Bs.</font></td>
+                @endif                  
                 </tr>
             </table>
   	  </div>

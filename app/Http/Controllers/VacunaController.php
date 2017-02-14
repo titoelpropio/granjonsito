@@ -56,7 +56,7 @@ public function galponavacunar(){//lista los galpones a vacunar para el dia actu
 }
 
  public function update($id, VacunaCreateRequest $request){
-    $resultado=DB::table('vacuna')->where('id',$id)->update(['edad'=>$request->edad,'nombre'=>$request->nombre,'detalle'=>$request->detalle]);
+    $resultado=DB::table('vacuna')->where('id',$id)->update(['edad'=>$request->edad,'nombre'=>$request->nombre,'detalle'=>$request->detalle,'precio'=>$request->precio]);
     return redirect('/vacuna')->with('message','MODIFICADO CORRECTAMENTE'); 
  }
     
@@ -70,9 +70,15 @@ public function destroy($id){
     
 public function listavacuna(){//lista de vacuna para el select en el modal del formulario vacunagalpon
 //    $vacunaActivas=Vacuna::where('vacuna.estado','=','1')->lists('nombre','detalle','id');
-     $vacunaActivas=DB::select("select nombre, detalle, id from `vacuna` where `vacuna`.`deleted_at` is null and estado=1 order by edad");
-    return response()->json($vacunaActivas);
+     $vacuna=DB::select("select edad,nombre, detalle, id from `vacuna` where `vacuna`.`deleted_at` is null and estado=1 order by edad");
+    return response()->json($vacuna);
 }
+
+public function agregar_listavacuna($id_edad){//lista de vacuna nuevas q se van a agregar personalizado
+     $vacuna=DB::select("SELECT DISTINCT vacuna.id as id_vacuna,vacuna.edad,vacuna.nombre,vacuna.detalle,vacuna.estado from vacuna WHERE (NOT EXISTS(SELECT *from control_vacuna,edad WHERE vacuna.id=control_vacuna.id_vacuna AND edad.id=control_vacuna.id_edad AND edad.id=".$id_edad." order by edad))");
+    return response()->json($vacuna);
+}
+
 
  public  function cambiarestado(Request $request){
      if($request->ajax()){

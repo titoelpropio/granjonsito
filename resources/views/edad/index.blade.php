@@ -31,4 +31,6 @@
 </div>
 
 {!!Html::script('js/edad.js')!!}
+{!!Html::script('js/control_vacuna.js')!!}
+
 @endsection

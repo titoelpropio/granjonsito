@@ -36,18 +36,19 @@ function index() {
 $contador=0;
      for ($i=0; $i < count($galpon) ; $i++) { //este es para las vacunas de los galpones 1-8
 
-              $verificar=DB::select("SELECT vacuna.id, vacuna.edad,vacuna.nombre,vacuna.detalle,".$galpon[$i]->numero." as galpon,(vacuna.edad - ".$galpon[$i]->edad.") AS dias FROM vacuna WHERE vacuna.edad>=".$galpon[$i]->edad." AND vacuna.estado=1 order by edad LIMIT 1");   
+           /*   $verificar=DB::select("SELECT vacuna.id, vacuna.edad,vacuna.nombre,vacuna.detalle,".$galpon[$i]->numero." as galpon,(vacuna.edad - ".$galpon[$i]->edad.") AS dias FROM vacuna WHERE vacuna.edad>=".$galpon[$i]->edad." AND vacuna.estado=1 order by edad LIMIT 3");   */
+
+ $verificar=DB::select("SELECT control_vacuna.id as id_control_vacuna,vacuna.precio,vacuna.id, vacuna.edad,vacuna.nombre,vacuna.detalle,".$galpon[$i]->numero." as galpon,(vacuna.edad - ".$galpon[$i]->edad.") AS dias FROM vacuna,control_vacuna,edad WHERE edad.id=control_vacuna.id_edad AND vacuna.id=control_vacuna.id_vacuna AND vacuna.edad>=".$galpon[$i]->edad." AND control_vacuna.estado=1 AND edad.id=".$galpon[$i]->id_edad."  ORDER BY dias");
          if (count($verificar) != 0) {
               $lista2[$contador] = $verificar;
               $contador++;
             }
-          
        }
       
        $contador=0;
         for ($i=0; $i < count($galpon2) ; $i++) { //este es para las vacunas de los galpones 1-8
 
-              $verificar=DB::select("SELECT vacuna.id, vacuna.edad,vacuna.nombre,vacuna.detalle,".$galpon2[$i]->numero." as galpon,(vacuna.edad - ".$galpon2[$i]->edad.") AS dias FROM vacuna WHERE vacuna.edad>=".$galpon2[$i]->edad." AND vacuna.estado=1 order by edad LIMIT 1");   
+              $verificar=DB::select("SELECT control_vacuna.id as id_control_vacuna,vacuna.precio,vacuna.id, vacuna.edad,vacuna.nombre,vacuna.detalle,".$galpon2[$i]->numero." as galpon,(vacuna.edad - ".$galpon2[$i]->edad.") AS dias FROM vacuna,control_vacuna,edad WHERE edad.id=control_vacuna.id_edad AND vacuna.id=control_vacuna.id_vacuna AND vacuna.edad>=".$galpon2[$i]->edad." AND control_vacuna.estado=1 AND edad.id=".$galpon2[$i]->id_edad."  ORDER BY dias");   
          if (count($verificar) != 0) {
               $lista3[$contador] = $verificar;
               $contador++;
@@ -273,6 +274,17 @@ and control_alimento.id_alimento=alimento.id and control_alimento.deleted_at IS 
         $silo=DB::select("SELECT alimento.id as id_alimento, alimento.tipo, silo.id as id_silo, silo.nombre, silo.cantidad from silo,alimento WHERE alimento.id=silo.id_alimento and alimento.estado=1 and silo.estado=1 and silo.id!=".$id_silo);
         return response()->json($silo);
     }
+
+
+    public function verificar_consumo_vacuna($id_control_vac){
+       $lista=DB::select("SELECT COUNT(*)as contador from consumo_vacuna WHERE Date_format(consumo_vacuna.fecha,'%Y/%M/%d')=Date_format(now(),'%Y/%M/%d') AND consumo_vacuna.id_control_vacuna=".$id_control_vac);
+       if ($lista[0]->contador==0) {
+             return response()->json(["mensaje"=>"¿DESEA CONSUMIR ESTA VACUNA?"]);
+       }else{
+             return response()->json(["mensaje"=>"¿DESEA VOLVER A CONSUMIR ESTA VACUNA?"]);
+       }
+    } 
+    
 
 }
 

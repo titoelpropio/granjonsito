@@ -89,7 +89,7 @@
 				<?php $total2 = $total2 + $aux2->cantidad_maple; ?>						
 			@endforeach	
 
-			<h1>TIPOS DE HUEVOS</h1>
+			<h1>HUEVOS DESCARTES</h1>
 				<table class="table table-striped table-bordered table-condensed table-hover">
 				<tr style="background-color: black; color: white" align="center">
 				@foreach($tipo_huevo as $can)

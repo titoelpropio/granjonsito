@@ -55,10 +55,19 @@ function agregar() {
                     var subtotal= parseFloat(precio_aux) * parseInt(parseInt(parseInt(cantidad_caja[cont]) * parseInt(cant_maple_aux)) * parseInt(cant_huevo_aux));
                     subtotalprecio[cont] = subtotal;
                     total=total+subtotalprecio[cont];
+
+            if ($('#detalles').attr('data-status')==1){
                     var fila = '<tr class="selected" id="fila' + cont + '" align="center"><td><button type="button" class="btn btn-danger" onclick="eliminar(' + cont + ')"><i class="fa fa-trash-o" aria-hidden="true"></i> ELIMINAR</button></td>\n\
                     <td><label>' + tipo + '</label><input name="id_tipo_caja[]" type="hidden" value='+id_tipo_caja[cont]+'></td>\n\
                     <td><input readonly="" style="width:100px;height:30px;font-size:20px;text-align:center" name="cantidad_caja[]" type="text" value='+cantidad_caja[cont]+'></td>\n\
                     <td><input readonly="" style="width:100px;height:30px;font-size:20px;text-align:center" name="subtotal_precio[]" type="text" value='+subtotalprecio[cont].toFixed(2)+'> Bs.</td></tr>';                    
+            }else{
+                    var fila = '<tr class="selected" id="fila' + cont + '" align="center"><td><button type="button" class="btn btn-danger" onclick="eliminar(' + cont + ')"><i class="fa fa-trash-o" aria-hidden="true"></i> ELIMINAR</button></td>\n\
+                    <td><label>' + tipo + '</label><input name="id_tipo_caja[]" type="hidden" value='+id_tipo_caja[cont]+'></td>\n\
+                    <td><input readonly="" style="width:100px;height:30px;font-size:20px;text-align:center" name="cantidad_caja[]" type="text" value='+cantidad_caja[cont]+'></td>\n\
+                    <td><input readonly="" style="width:100px;height:30px;font-size:20px;text-align:center" name="subtotal_precio[]" type="hidden" value='+subtotalprecio[cont].toFixed(2)+'></td></tr>';                    
+            }
+
                     cont++;
                     $("#total").text(total.toFixed(2));
                     $("#monto_total").val(total.toFixed(2));

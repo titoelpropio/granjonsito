@@ -13,11 +13,11 @@ use Hash;
 
 class VentaCajaController extends Controller{
 
-  public function __construct() {
+  /*public function __construct() {
      $this->middleware('auth');
      $this->middleware('admin');
      $this->middleware('auth',['only'=>'admin']);
-  }
+  }*/
 
 	function index(){
      $venta_caja=VentaCaja::where('estado', '=', 1)->orderBy('fecha','desc')->paginate(30);
@@ -102,5 +102,10 @@ class VentaCajaController extends Controller{
   public function edit($id){
       $ventacaja=VentaCaja::find($id);
       return view('ventacaja.edit',['ventacaja'=>$ventacaja]);
+  }
+
+  public function venta_caja_lista($fecha_inicio, $fecha_fin){         
+      $ventacaja=DB::select("SELECT venta_caja.id,venta_caja.fecha,venta_caja.precio,venta_caja.estado from venta_caja WHERE venta_caja.estado=1 AND venta_caja.fecha BETWEEN '".$fecha_inicio."' and '".$fecha_fin."' ORDER by venta_caja.fecha DESC");
+      return response()->json($ventacaja);
   }
 }

@@ -11,6 +11,8 @@ $cantidad_granel=0;
 $contador_consumo=0;//cuenta el array consumo para desactivar el boton control alimento
 $total_consumo=count($consumo);
 $contador_v=0;
+$auxdias=0;
+$dias=0;
 ?>
 <input type="hidden" name="_token" value="{{ csrf_token()}}" id="token">
 <div class="row" style="height: 100%; width:100%"> 
@@ -98,6 +100,39 @@ if (count($control)!=0) {
 //echo $lista2[$contador_v][0]->galpon,$gal->numero_fase;
              if ($lista2[$contador_v][0]->galpon==$gal->numero_fase) {
               
+
+                for ($j=0; $j <count($lista2[$contador_v]) ; $j++) { 
+                       $dias= $lista2[$contador_v][$j]->dias;
+                           if ($j-1>=0) {//CUNADO TIENE MAS DE UNA VACUNA
+                            if ($lista2[$contador_v][$j-1]->dias==$dias) {
+                                 if ($lista2[$contador_v][$j]->dias==0) {
+
+                           echo "<font size=3> <button class='btn-sm btn-info' id='vacuna".$lista2[$contador_v][$j]->id."' onclick='cargar_id_control_vacuna(".$lista2[$contador_v][$j]->id_control_vacuna.",".$lista2[$contador_v][$j]->precio.")' data-toggle='modal' data-target='#myModalConsumo'>".$lista2[$contador_v][$j]->nombre."</button></font>";
+                          }
+                          else{
+                            echo "<font size=3> <button class='btn-sm btn-info' id='vacuna".$lista2[$contador_v][$j]->id."' onclick='cargar_id_control_vacuna(".$lista2[$contador_v][$j]->id_control_vacuna.",".$lista2[$contador_v][$j]->precio.")' data-toggle='modal' data-target='#myModalConsumo'>".$lista2[$contador_v][$j]->nombre."</button></font>";
+                          }
+                            }
+                            }else{
+                            if ($j==0) {//AQUI SE ENTRA CUANDO ES LA PRIMERA VACUNA
+                               if ($lista2[$contador_v][$j]->dias==0) {
+                           echo "<td colspan=1 class=xl83 style='border-left:none; width:10.75%'><font size=3>Días:<span id='dias".$gal->numero_fase."' style='color:red'>HOY</span> 
+                          <button class='btn-sm btn-info' id='vacuna".$lista2[$contador_v][$j]->id."' onclick='cargar_id_control_vacuna(".$lista2[$contador_v][$j]->id_control_vacuna.",".$lista2[$contador_v][$j]->precio.")' data-toggle='modal' data-target='#myModalConsumo'>".$lista2[$contador_v][$j]->nombre."</button>
+                           </font>";  // <span id='vacuna".$gal->numero."'>".$lista2[$contador_v][$j]->nombre."</span>, 
+                          }
+                          else{
+                            echo "<td colspan=1 class=xl83 style='border-left:none; width:10.75%'><font size=3> Días:<span id='dias".$gal->numero_fase."' style='color:red'>".$lista2[$contador_v][$j]->dias."</span>  <button class='btn-sm btn-info' id='vacuna".$lista2[$contador_v][$j]->id."' onclick='cargar_id_control_vacuna(".$lista2[$contador_v][$j]->id_control_vacuna.",".$lista2[$contador_v][$j]->precio.")' data-toggle='modal' data-target='#myModalConsumo'>".$lista2[$contador_v][$j]->nombre."</button></font>";
+                          }
+
+
+                            }
+                            }
+                            }
+                            echo "</td>";
+                         $contador_v++;
+
+
+/*
                 if ($lista2[$contador_v][0]->dias==0) {
                  echo "<td colspan=1 align='center' class=xl83 style='border-left:none; width:10.75%'><font size=3><span id='vacuna".$gal->numero_fase."'>".$lista2[$contador_v][0]->nombre."</span> Días:<span id='dias".$gal->numero_fase."' style='color:red'>HOY</span></font></td>";
            
@@ -107,7 +142,7 @@ if (count($control)!=0) {
                   
                 }
           
-           $contador_v++;
+           $contador_v++;*/
 
          
             } 

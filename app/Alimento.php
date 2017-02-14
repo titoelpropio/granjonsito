@@ -20,7 +20,7 @@ class Alimento extends Model implements AuthenticatableContract,
     
 use Authenticatable, Authorizable, CanResetPassword, SoftDeletes;
 
-    /**
+    /**ffffff
      * The database table used by the model.
      *
      * @var string

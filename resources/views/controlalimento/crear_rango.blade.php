@@ -1,8 +1,9 @@
 @extends('layouts.admin')
 @section('content')
 @include('alerts.errors')
+@include('alerts.cargando')
 @include('controlalimento.modal_rango')
-
+        <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
     <div class="panel panel-green">
         <div class="panel-heading">
@@ -23,13 +24,10 @@
                     <th><center>EDAD MAXIMA</center></th>
                     <th><center>OPCION</center></th>
                 </thead>
-                @foreach($rango_edad as $r_e)
-	                <tr align="center">
-                	<td>{{$r_e->edad_min}}</td>
-                	<td>{{$r_e->edad_max}}</td>
-                    <td><button class="btn btn-danger" onclick="eliminar_rango_edad({{$r_e->id}},{{$r_e->edad_min}},{{$r_e->edad_max}})">ELIMINAR</button></td>                    
-                	</tr>
-                @endforeach
+              
+                <tbody id="cuerpoEdad">
+                    
+                </tbody>
             </table>
 </div>
 
@@ -42,13 +40,9 @@
                     <th><center>TEMPERATURA MAXIMA</center></th>
                     <th><center>OPCION</center></th>
                 </thead>
-                @foreach($rango_temperatura as $r_t)
-	                <tr align="center">
-                	<td>{{$r_t->temp_min}} ºC</td>
-                	<td>{{$r_t->temp_max}} ºC</td>
-                    <td><button class="btn btn-danger" onclick="eliminar_rango_temperatura({{$r_t->id}},{{$r_t->temp_min}},{{$r_t->temp_max}})">ELIMINAR</button></td>                    
-                	</tr>
-                @endforeach
+              <tbody id="cuerpoTemperatura">
+                    
+              </tbody>
             </table>
 </div>
   {!!Html::script('js/rango.js')!!} 

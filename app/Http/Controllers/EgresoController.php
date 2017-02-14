@@ -18,10 +18,10 @@ class EgresoController extends Controller{
         $this->middleware('auth',['only'=>'admin']);
     }
 
-	function index(){
-     $egreso= DB::table('egreso_varios')->orderBy('id','desc')->paginate(30); 
+	function index(){     
+     //$egreso= DB::table('egreso_varios')->orderBy('id','desc')->paginate(30); 
      $categoria=Categoria::where('tipo',0)->lists('nombre','id');
-     return view('egreso.index',compact('egreso','categoria',$categoria));
+     return view('egreso.index',compact('categoria',$categoria));
 	}
   
 	public function create(){
@@ -36,11 +36,15 @@ class EgresoController extends Controller{
         }  */
   }
 
-  public function update(EgresoRequest $request,$id){
-    $egreso= Egreso::find($id);
+  public function update(Request $request,$id){
+    if ($request->ajax()) {
+         $egreso=DB::table('egreso_varios')->where('id', $id)->update(['detalle' => $request->detalle, 'fecha' => $request->fecha, 'precio'=>$request->precio, 'id_categoria'=>$request->id_categoria]);        
+        return response()->json($request->all());
+    }      
+  /*  $egreso= Egreso::find($id);
     $egreso->fill($request->all());
     $egreso->save();
-    return redirect('/egreso')->with('message','MODIFICADO CORRECTAMENTE');  
+    return redirect('/egreso')->with('message','MODIFICADO CORRECTAMENTE');  */
   }
 
   public function edit($id){
@@ -49,10 +53,33 @@ class EgresoController extends Controller{
       return view('egreso.edit',compact('categoria',$categoria),['egreso'=>$egreso]);
   }
 
-  public function destroy($id){
-    /*  $edad=Edad::find($id);
-      $edad->delete();
-      Session::flash('message','Edad Eliminado Correctamente');
-     return Redirect::to('/edad');*/
+  public function destroy(Request $request){
+      $id=$request->get('id_egreso');
+      $egreso=Egreso::find($id);
+      $egreso->delete();
+      Session::flash('message','EGRESO ELIMINADO');
+     return Redirect::to('/lista_egreso');
   }
+
+    public function lista_egreso() {
+     $categoria=Categoria::where('tipo',0)->lists('nombre','id');
+     return view('egreso.index',compact('categoria',$categoria));      
+  }
+
+  public function egreso_lista($fecha_inicio, $fecha_fin){         
+      $egreso=DB::select("SELECT egreso_varios.id,egreso_varios.detalle,egreso_varios.precio,egreso_varios.id_categoria,egreso_varios.fecha FROM egreso_varios WHERE egreso_varios.fecha BETWEEN '".$fecha_inicio."' AND '".$fecha_fin."' AND egreso_varios.deleted_at IS NULL ORDER BY egreso_varios.fecha DESC");
+      return response()->json($egreso);
+  }
+
+  public function actualizar_egreso($id){         
+      $ingreso=DB::select("SELECT egreso_varios.id,egreso_varios.detalle,egreso_varios.precio,egreso_varios.id_categoria,egreso_varios.fecha FROM egreso_varios WHERE egreso_varios.id=".$id);
+      return response()->json($ingreso);
+  }   
+
+  public function select_egreso($id){         
+      $select=DB::select("SELECT categoria.id, categoria.nombre from categoria WHERE categoria.deleted_at IS NULL AND categoria.tipo=0 AND categoria.id=".$id."
+      UNION
+      SELECT categoria.id, categoria.nombre from categoria WHERE categoria.deleted_at IS NULL AND categoria.tipo=0 AND categoria.id!=".$id);
+      return response()->json($select);
+  }   
 }

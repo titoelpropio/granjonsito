@@ -50,3 +50,35 @@
     </div>
   </div>
 </div>
+
+
+<!--CONSUMO DE VACUNAS-->
+<div class="modal fade" id="myModalConsumo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" id="espacio">
+       <H1 id="mensaje_vacuna"></H1>
+      </div>
+      <div class="modal-body">
+     
+    {!!Form::hidden('id_control_vacuna',null,['id'=>'id_control_vacuna','class'=>'form-control','readonly'])!!}
+
+    <div class="form-group">
+      {!!Form::label('cantidad','Cantidad:')!!}
+      {!!Form::number('cantidad_vac',1,['id'=>'cantidad_vac','class'=>'form-control','onkeypress'=>'return bloqueo_de_punto(event)','onkeyup'=>'calcular()'])!!}
+    </div>
+
+    <div class="form-group">
+      {!!Form::label('precio','Precio:')!!}
+      {!!Form::text('precio',null,['id'=>'precio','class'=>'form-control','placeholder'=>'Ingrese La Capacidad Total','onkeypress'=>'return bloqueo_de_punto(event)'])!!}
+    </div>
+    <input type="hidden" id="precio_aux">
+  </div>
+
+      <div class="modal-footer">
+      <button class="btn btn-primary" onclick="consumir_vacuna()" id="btn_consumir">CONSUMIR</button>
+      {!!link_to('#', $title='CANCELAR', $attributes = ['id'=>'cancelar','data-dismiss'=>'modal','class'=>'btn btn-danger'], $secure = null)!!}
+      </div>
+    </div>
+  </div>
+</div>

@@ -30,6 +30,7 @@
     {!!Form::select('id_tipo_caja',$tipocaja,null,array('class'=>'form-control'))!!}
 </div>
 
+
 <div class="form-group">
     {!!Form::label('total','Total:')!!}
     {!!Form::text('total',null,['id'=>'total','class'=>'form-control','placeholder'=>'Ingrese La Cantidad De Cajas','onkeypress'=>'return numerosmasdecimal(event)'])!!}

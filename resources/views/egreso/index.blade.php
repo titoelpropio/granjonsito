@@ -3,7 +3,7 @@
 @include('alerts.success')
 @include('alerts.request')
 @include('alerts.cargando')
-	@include('egreso.modal')
+@include('egreso.modal')
 	
 <div class="pull-left"><h1>LISTA DE EGRESOS</h1></div>
 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 pull-right">
@@ -13,6 +13,21 @@
 
     <div class="col-sm-1 col-md-1  col-sm-1  col-xs-12 pull-right" style="width: 15%; margin: 0px; padding: 0px">
       <div class="form-group"> <button class="btn btn-danger" onclick="cargar_lista_egreso()">MOSTRAR</button> </div>
+    </div>
+
+    <div class="col-sm-3  col-md-3  col-sm-3  col-xs-12 pull-right" style=" margin: 0px; padding: 0px">
+      <div class="form-group">
+        <div class='input-group date' id='datetimepicker1'>
+          <input type='text' class="form-control" id="fecha_fin" style="font-size:20px;text-align:center" />
+          <span class="input-group-addon ">
+             <span class="fa fa-calendar" aria-hidden="true"></span> 
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-1 col-md-1  col-sm-1  col-xs-12 pull-right" style="margin: 0px; padding: 0px">
+      <div class="form-group">  <B>HASTA: </B> </div>
     </div>
 
     <div class="col-sm-3  col-md-3  col-sm-3  col-xs-12 pull-right" style=" margin: 0px; padding: 0px">
@@ -27,8 +42,8 @@
     </div>
 
     <div class="col-sm-1 col-md-1  col-sm-1  col-xs-12 pull-right" style="margin: 0px; padding: 0px">
-      <div class="form-group">  <B>FECHA: </B> </div>
-    </div>
+      <div class="form-group">  <B>DESDE: </B> </div>
+    </div>    
 </div>
 
 
@@ -43,7 +58,9 @@
 						<th><center>FECHA</center></th>
 						<th><center>OPCION</center></th>
 					</thead>
-					@foreach($egreso as $egr)
+			        <tbody id="datos" >
+			        </tbody>
+					<?php /*@foreach($egreso as $egr)
 					<tr>
 						<td><center>{{ $egr->detalle}}</center></td>						
 						<td><center>{{ $egr->precio}} Bs.</center></td>						
@@ -53,9 +70,9 @@
 						<button class="btn btn-danger" onclick="{{$egr->id}}">ELIMINAR</button>
 						</CENTER></td>
 					</tr>
-					@endforeach
+					@endforeach*/ ?>
 				</table>
-	{!!$egreso->render()!!}
+	<?php //{!!$egreso->render()!!} ?>
 			</div>
 
 		</div>

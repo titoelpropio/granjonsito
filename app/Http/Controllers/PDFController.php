@@ -130,11 +130,11 @@ class PDFController extends Controller{
    } 
         $inicio=$fecha_inicio;
         $fin=$fecha_fin;
-        $egreso = DB::select("SELECT (categoria.nombre)as detalle,IFNULL(SUM(egreso_varios.precio),0)as total from egreso_varios,categoria WHERE categoria.id=egreso_varios.id_categoria and egreso_varios.fecha BETWEEN '".$fecha_inicio."' AND '".$fecha_fin."' GROUP BY egreso_varios.id_categoria
+        $egreso = DB::select("SELECT (categoria.nombre)as detalle,IFNULL(SUM(egreso_varios.precio),0)as total from egreso_varios,categoria WHERE categoria.id=egreso_varios.id_categoria and egreso_varios.fecha BETWEEN '".$fecha_inicio."' AND '".$fecha_fin."' AND egreso_varios.deleted_at IS NULL GROUP BY egreso_varios.id_categoria
       UNION
   SELECT CONCAT('COMPRA DE GRANO DE TIPO ',' ',alimento.tipo)AS detalle,IFNULL(SUM(compra.precio_compra),0)as total from silo,compra,alimento WHERE compra.id_silo=silo.id and silo.id_alimento=alimento.id  and compra.fecha BETWEEN '".$fecha_inicio."' AND DATE_SUB('".$fecha_fin."',INTERVAL -1 DAY) AND compra.deleted_at IS NULL GROUP BY alimento.tipo");
 
-        $ingreso=DB::select("SELECT (categoria.nombre)as detalle,IFNULL(SUM(ingreso_varios.precio),0)as total from ingreso_varios,categoria WHERE categoria.id=ingreso_varios.id_categoria and ingreso_varios.fecha BETWEEN '".$fecha_inicio."' AND '".$fecha_fin."' GROUP BY ingreso_varios.id_categoria      
+        $ingreso=DB::select("SELECT (categoria.nombre)as detalle,IFNULL(SUM(ingreso_varios.precio),0)as total from ingreso_varios,categoria WHERE categoria.id=ingreso_varios.id_categoria and ingreso_varios.fecha BETWEEN '".$fecha_inicio."' AND '".$fecha_fin."' AND ingreso_varios.deleted_at IS NULL GROUP BY ingreso_varios.id_categoria      
           UNION
         SELECT CONCAT('VENTA DE MAPLES')AS detalle,SUM(venta_huevo.precio)as TOTAL from venta_huevo,tipo_huevo,detalle_venta_huevo WHERE tipo_huevo.id=detalle_venta_huevo.id_tipo_huevo and venta_huevo.id=detalle_venta_huevo.id_venta_huevo AND venta_huevo.estado=1 AND venta_huevo.fecha BETWEEN '".$fecha_inicio."' AND '".$fecha_fin."'
         UNION

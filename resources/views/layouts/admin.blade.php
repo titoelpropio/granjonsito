@@ -43,15 +43,25 @@
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
               <ul class="nav navbar-nav">
-                <li class="active"><a href="{!!URL::to('galpon')!!}">PONEDORAS</a></li>
-                <li class="active"><a href="{!!URL::to('criarecria')!!}">CRIA</a></li>
+                <li><a href="{!!URL::to('galpon')!!}">PONEDORAS</a></li>
+                <li><a href="{!!URL::to('criarecria')!!}">CRIAS</a></li>
 
                  @if(Auth::user()==null) 
-                  <li class="active"><a href="{!!URL::to('cajadeposito')!!}">CAJAS</a></li>
-                    @endif  
-                    @if(Auth::user()!=null) 
-                <li class="active"><a href="{!!URL::to('cajadeposito_admin')!!}">CAJAS</a></li>
-                  @endif                 
+                  <li><a href="{!!URL::to('cajadeposito')!!}">CAJAS</a></li>
+                @endif  
+                 @if(Auth::user()!=null) 
+                  <li><a href="{!!URL::to('cajadeposito_admin')!!}">CAJAS</a></li>
+                @endif    
+
+                <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="">VENTAS<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                      <li><a href="{!!URL::to('ventacaja')!!}">VENTA DE CAJAS</a></li>
+                      <li><a href="{!!URL::to('ventahuevo')!!}">VENTAS DE HUEVOS DESCARTES</a></li>    
+                  </ul>
+                </li>
+
+                <li><a href="{!!URL::to('compra')!!}">COMPRA ALIMENTO</a></li>   
 
 
                 @if(Auth::user()!=null)                 
@@ -74,11 +84,9 @@
                   <ul class="dropdown-menu">
                       <li><a href="{!!URL::to('maple')!!}">REGISTRAR MAPLE</a></li>
                       <li><a href="{!!URL::to('tipocaja')!!}">REGISTRAR TIPO CAJAS</a></li>
-                      <li><a href="{!!URL::to('tipohuevo')!!}">REGISTRAR TIPO HUEVOS</a></li> 
+                      <li><a href="{!!URL::to('tipohuevo')!!}">REGISTRAR TIPO HUEVOS DESCARTES</a></li> 
                       <li><a href="{!!URL::to('lista_caja')!!}">LISTA DE CAJAS</a></li>     
-                      <li><a href="{!!URL::to('lista_maple')!!}">LISTA DE MAPLES</a></li>
-                        <li><a href="{!!URL::to('ventacaja')!!}">VENTA DE CAJAS</a></li>
-                      <li><a href="{!!URL::to('ventahuevo')!!}">VENTAS DE HUEVOS</a></li>   
+                      <li><a href="{!!URL::to('lista_maple')!!}">LISTA DE HUEVOS DESCARTES</a></li>  
                   </ul>
                 </li>
 
@@ -97,12 +105,12 @@
             <li class="dropdown">
                   <a class="dropdown-toggle" data-toggle="dropdown" href="">ADMINISTRADOR<span class="caret"></span></a>
                   <ul class="dropdown-menu">                              
-                      <li><a href="{!!URL::to('compra')!!}">COMPRA ALIMENTO</a></li>   
                       <li><a href="{!!URL::to('lista_compra')!!}">ANULAR COMPRA ALIMENTO</a></li>   
                       <li><a href="{!!URL::to('categoria')!!}">REGISTRAR GASTOS</a></li>
-                      <li><a href="{!!URL::to('egreso')!!}">REGISTRAR EGRESO</a></li>
-                      <li><a href="{!!URL::to('ingreso')!!}">REGISTRAR INGRESO</a></li>  
+                      <li><a href="{!!URL::to('lista_egreso')!!}">REGISTRAR EGRESO</a></li>
+                      <li><a href="{!!URL::to('lista_ingreso')!!}">REGISTRAR INGRESO</a></li>  
                       <li><a href="{!!URL::to('temperatura')!!}">REGISTRAR TEMPERATURA</a></li>  
+                      <li><a href="{!!URL::to('usuario')!!}">REGISTRAR USUARIO</a></li>                        
                       <!--li><a href="Backup_Granja/php/">COPIA DE SEGURIDAD</a>  </li-->
                   </ul>
                 </li>

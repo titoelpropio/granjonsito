@@ -220,3 +220,114 @@
     </div>
 </div>
 
+
+
+<!--MODAL CONTROL VACUNA-->
+
+<div class="modal fade" id="myModalControl" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
+    <div class="modal-dialog modal-lg"  role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="titulogalpon" class="modal-title" > CONTROL VACUNA </h3>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
+           
+ 
+            <table class="table table-striped table-bordered table-condensed table-hover">
+                <thead align="center" bgcolor=black style="color: white">
+                <td>EDAD</td>
+                <td>NOMBRE</td>
+                <TD>METODO DE APLICACION</TD>
+                <TD>SELECCIONAR</TD>
+                </thead>
+                
+                <tbody id="datos_vacuna">
+                
+                </tbody>
+
+            </table>
+ 
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-toggle='modal' data-target='#myModalConfirmar' onclick="confirmar_control_vacuna()" >VISTA PREVIA</button>    
+                <button data-dismiss="modal"  class="btn btn-danger ">CANCELAR</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--MODAL CONTROL VACUNA CONFIRMAR-->
+<div class="modal fade" id="myModalConfirmar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
+    <div class="modal-dialog modal-lg"  role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="titulogalpon" class="modal-title" > CONTROL VACUNA </h3>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
+           
+ {!!Form::open(array('url'=>'control_vacuna','method'=>'POST','autocomplete'=>'off'))!!}
+ <input type="hidden" name="id_edad1" id="id_edad1">
+            <table class="table table-striped table-bordered table-condensed table-hover">
+                <thead align="center" bgcolor=black style="color: white">
+                <td>EDAD</td>
+                <td>NOMBRE</td>
+                <TD>METODO DE APLICACION</TD>
+                <TD>SELECCIONAR</TD>
+                </thead>
+
+                
+                <tbody id="confirmar_vacuna">
+                
+                </tbody>
+
+            </table>
+ 
+            </div>
+
+            <div class="modal-footer">
+                <input type="submit" class="btn btn-primary" value="CONFIRMAR">  
+{!!Form::close()!!}
+
+                <button data-dismiss="modal"  class="btn btn-danger ">CANCELAR</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--MODAL CONTROL DE VACUNAS-->
+<div class="modal fade" id="myModal_Vacunas" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
+    <div class="modal-dialog modal-lg"  role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="titulogalpon" class="modal-title" > CONTROL VACUNA </h3>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
+
+            <table class="table table-striped table-bordered table-condensed table-hover">
+                <thead align="center" bgcolor=black style="color: white">
+                <td>EDAD</td>
+                <td>NOMBRE</td>
+                <TD>METODO DE APLICACION</TD>
+                <TD>ESTADO</TD>
+                </thead>
+
+                
+                <tbody id="vacunas">
+                
+                </tbody>
+
+            </table>
+ 
+            </div>
+
+            <div class="modal-footer">
+                <button data-dismiss="modal"  class="btn btn-danger ">SALIR</button>
+            </div>
+        </div>
+    </div>
+</div>

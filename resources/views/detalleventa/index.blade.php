@@ -32,7 +32,7 @@
 
     <div class="col-lg-3 col-sm-3 col-xs-12" >
         <div class="form-group" >
-            <label>CACNTIDAD DE CAJA:</label><br>
+            <label>CANTIDAD DE CAJA:</label><br>
             <input type="text" size="3" name="cantidad_caja" onkeypress="return bloqueo_de_punto(event)" style="font-size:20px;text-align:center" id="cantidad_cajas">
             <button id="bt_add" type="button" class="btn btn-success" onclick="agregar()"><i class="fa fa-plus-square" aria-hidden="true"></i></button>
          </div>
@@ -42,26 +42,40 @@
         <div class="panel panel-primary" >
             <div class="panel-body" >
                 <div class="table-responsive">
-                    <table id="detalles" class="table table-striped table-bordered table-condensed table-hover">
+                    <table id="detalles_tabla" class="table table-striped table-bordered table-condensed table-hover">
                         <thead style="background-color: #A9D0F5">
                             <th><center>OPCION</center></th>
                             <th><center>TIPO DE CAJA</center></th>
                             <th><center>CANTIDAD DE CAJA</center></th>
                             <th><center>PRECIO</center></th>                       
                         </thead>
+                    @if(Auth::user()==null)                         
+                        <tbody id="detalles" data-status=0> </tbody>
+                    @endif 
 
-                        <tbody id="detalles">
-                        </tbody>
+                    @if(Auth::user()!=null)                         
+                        <tbody id="detalles" data-status=1> </tbody>
+                    @endif 
+
+                    @if(Auth::user()!=null)                         
                         <tfoot style="background-color: #f1948a">
                             <th><center>TOTAL</center></th>
                             <th></th>
                             <th></th>
                             <th><center><font size="4" id="total">0.00</font><font> Bs.</font></center></th>
                         </tfoot>
+                    @endif 
                     </table>
                 </div>
-                <div class="pull-right">
-                <b>MONTO TOTA VENTA: </b><input type="text" name="precio" id="monto_total" size="5" onkeypress="return numerosmasdecimal(event)" style="font-size:20px;text-align:center"><b> Bs.</b></div>
+        @if(Auth::user()==null) 
+            <div class="pull-right"> <input type="hidden" name="precio" id="monto_total" size="5" onkeypress="return numerosmasdecimal(event)"></div>       
+        @endif 
+
+        @if(Auth::user()!=null) 
+            <div class="pull-right"> <b>MONTO TOTA VENTA: </b><input type="text" name="precio" id="monto_total" size="5" onkeypress="return numerosmasdecimal(event)" style="font-size:20px;text-align:center"><b> Bs.</b> </div>
+        @endif 
+
+
             </div>
         </div>
     </div>

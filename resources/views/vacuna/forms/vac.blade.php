@@ -13,3 +13,7 @@
     {!!Form::textarea('detalle',null,['class'=>'form-control','rows'=>'3','placeholder'=>'Ingresa El Metodo De Aplicacion'])!!}
 </div>
 
+<div class="form-group">
+  {!!Form::label('precio','Precio:')!!}
+  {!!Form::text('precio',null,['id'=>'precio','class'=>'form-control','rows'=>'3','placeholder'=>'Ingrese El Precio','onkeypress'=>'return numerosmasdecimal(event)'])!!}
+</div>

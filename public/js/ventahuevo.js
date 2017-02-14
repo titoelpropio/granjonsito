@@ -1,11 +1,54 @@
 $(document).ready(function(){
-    if ($('#token').val()=="") {
-        location.reload();
-    }else{
-        $('#oculta').hide(5000);
-        $('#loading').css("display","none");
-    } 
+    $('#oculta').hide(5000);
+    $('#loading').css("display","none");
+    $(function (){ $("#datetimepicker1").datetimepicker({ viewMode: 'days',  format: 'YYYY-MM-DD' }); });
+    $(function (){ $("#datetimepicker2").datetimepicker({ viewMode: 'days',  format: 'YYYY-MM-DD' }); });
+    var hoy = new Date();
+    var dd = hoy.getDate();
+    var mm = hoy.getMonth() + 1; //hoy es 0!
+    var yyyy = hoy.getFullYear();
+    if (dd < 10) {  dd = '0' + dd }
+    if (mm < 10) {  mm = '0' + mm  }
+    hoy = yyyy + '-' + mm + '-' + dd;
+    $('#fecha_inicio').val(hoy);
+    $('#fecha_fin').val(hoy);   
+    cargar_lista_venta_huevo(); 
 });
+
+function cargar_lista_venta_huevo(){
+    var fecha_inicio=$('#fecha_inicio').val();
+    var fecha_fin=$('#fecha_fin').val();
+    var tabladatos=$("#datos_huevos");
+
+    var primera = Date.parse(fecha_inicio); 
+    var segunda = Date.parse(fecha_fin); 
+    if (primera > segunda) {                    
+        alertify.alert("MENSAJE",'LA FECHA HASTA TIENE QUE SER MAYOR A LA FECHA DESDE!!!');
+        $("#datos_huevos").empty();
+    } else{    
+        var route = "venta_huevo_lista/"+fecha_inicio+"/"+fecha_fin;
+        $("#datos_huevos").empty();
+        if ($('#datos_huevos').attr('data-status')==1){
+            $.get(route, function (res) {
+            $("#datos_huevos").empty();
+                $(res).each(function (key, value) {
+                    tabladatos.append("<tr align=center style='background-color:white' onmouseover='this.style.backgroundColor=\"#F6CED8\"' onmouseout='this.style.backgroundColor=\"white\"'><td>"+value.fecha+"</td><td>"+value.precio+" Bs.</td><td>\n\
+                    <button id='detalle"+value.id+"' class='btn btn-primary' data-toggle='modal' data-target='#myModal' onclick='cargartabla_ventahuevo("+value.id+")'><i class='fa fa-navicon' aria-hidden='true'></i> DETALLE</button> \n\
+                    <button id='detalle"+value.id+"' class='btn btn-danger' data-toggle='modal' data-target='#myModal_anular' onclick='cargartabla_anular_huevo("+value.id+")'><i class='fa fa-remove' aria-hidden='true'></i> ANULAR VENTA</button></td></tr>");           
+                });
+            });  
+        }else{
+            $.get(route, function (res) {
+            $("#datos_huevos").empty();
+                $(res).each(function (key, value) {
+                    tabladatos.append("<tr align=center style='background-color:white' onmouseover='this.style.backgroundColor=\"#F6CED8\"' onmouseout='this.style.backgroundColor=\"white\"'><td>"+value.fecha+"</td><td>"+value.precio+" Bs.</td><td>\n\
+                    <button id='detalle"+value.id+"' class='btn btn-primary' data-toggle='modal' data-target='#myModal' onclick='cargartabla_ventahuevo("+value.id+")'><i class='fa fa-navicon' aria-hidden='true'></i> DETALLE</button></td></tr>");           
+                });
+            });  
+        }
+
+    } 
+}
 
 //////////////VENTA DE HUEVOS///////////////
 function cargartabla_ventahuevo(id) {   //CARGAR TABLA VENTA DE HUEVOS

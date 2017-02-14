@@ -35,6 +35,7 @@ function cargarselect_galpon() {
         }
     }); 
 }
+
 function detalle_galpon(sw){
    var tabladatos=$("#datos_r");
    var id_edad = $('#id_galpon').val();

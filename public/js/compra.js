@@ -152,16 +152,25 @@ function cargar_fechas(){
 }
 
 function cargar_lista_comra(){
-    var fecha=$('#fecha_inicio').val();
+    var fecha_inicio=$('#fecha_inicio').val();
+    var fecha_fin=$('#fecha_fin').val();
     var tabladatos=$("#datos");
-    var route2 = "anular_compra/"+fecha;
-    $("#datos").empty();
-    $.get(route2, function (res) {
-    $("#datos").empty();
-        $(res).each(function (key, value) {
-            tabladatos.append("<tr align=center style='background-color:white' onmouseover='this.style.backgroundColor=\"#F6CED8\"' onmouseout='this.style.backgroundColor=\"white\"'><td>"+value.nombre_silo+"</td><td>"+value.nombre+"</td><td>"+value.tipo+"</td><td>"+value.cantidad_total+" kg.</td><td>"+value.precio_compra+" Bs.</td><td>"+value.fecha+"</td><td><center><button value="+value.id_compra+" class='btn btn-danger' data-toggle='modal' data-target='#myModal' onclick='anular_compras("+value.id_compra+")' >ANULAR COMPRA</button></td></tr>");           
-        });
-    });   
+
+    var primera = Date.parse(fecha_inicio); 
+    var segunda = Date.parse(fecha_fin); 
+     
+    if (primera > segunda) {
+        alertify.alert("MENSAJE",'LA FECHA HASTA TIENE QUE SER MAYOR A LA FECHA DESDE!!!');
+    } else{
+        var route2 = "anular_compra/"+fecha_inicio+"/"+fecha_fin;
+        $("#datos").empty();
+        $.get(route2, function (res) {
+        $("#datos").empty();
+            $(res).each(function (key, value) {
+                tabladatos.append("<tr align=center style='background-color:white' onmouseover='this.style.backgroundColor=\"#F6CED8\"' onmouseout='this.style.backgroundColor=\"white\"'><td>"+value.nombre_silo+"</td><td>"+value.nombre+"</td><td>"+value.tipo+"</td><td>"+value.cantidad_total+" kg.</td><td>"+value.precio_compra+" Bs.</td><td>"+value.fecha+"</td><td><center><button value="+value.id_compra+" class='btn btn-danger' data-toggle='modal' data-target='#myModal' onclick='anular_compras("+value.id_compra+")' >ANULAR COMPRA</button></td></tr>");           
+            });
+        });   
+    }
 }
 
 function anular_compras(id_compra) {
