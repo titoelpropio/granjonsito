@@ -326,3 +326,9 @@ Route::get('lista_venta_huevo/{tipe}','DetalleVentaHuevoController@lista_venta_h
 Route::resource('controlalimento','ControlAlimentoController');
 Route::get('lista_de_silos/{tipe}','GalponController@lista_de_silos');
 Route::get('lista_de_silos_aux/{tipe}','GalponController@lista_de_silos_aux');
+
+
+//VACUNA EMERGENTES
+Route::resource('vacuna_emergente','VacunaEmegerteController');
+Route::get('vacunae_emergente_estado','VacunaEmegerteController@cambiarestado');
+
