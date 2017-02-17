@@ -26,7 +26,7 @@ function crear_categoria() {
         },error: function(){
             alertify.alert("ERROR","NO SE PUDO GUARDAR LOS DATOS INTENTE NUEVAMENTE");
             $('#loading').css("display","none"); 
-            $("#btnregistrar").show();
+            setTimeout("location.reload()",2000);
         }
     });
 }

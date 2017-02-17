@@ -2,7 +2,7 @@
 @section ('content')
 
 <input type="hidden" name="_token" value="{{ csrf_token()}}" id="token">
- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+ <!--div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="panel panel-green">
                 <div class="panel-heading">
                       <ul class="nav nav-pills">
@@ -11,7 +11,7 @@
                     </ul>
                 </div>  
             </div>
- </div>
+ </div-->
 
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 

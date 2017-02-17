@@ -26,6 +26,7 @@ $(document).ready(function(){
 function cargar_lista_caja(){
 var cont = 0;   
 var total = 0; 
+var x = 0;
 var fecha_inicio = $('#fecha_inicio').val();
 var fecha_fin = $('#fecha_fin').val();
     if (fecha_inicio == "" || fecha_fin == "") {
@@ -48,17 +49,30 @@ var fecha_fin = $('#fecha_fin').val();
                     if (cont == 0) {
                         for (var j = 0; j < res[i].length; j++) {
                             total = parseInt(total) + parseInt(res[i][j].cantidad_caja);
-                            tabladatos.append("<tr align=center style=background-color:#f2f2f2><td>"+res[i][j].tipo+"</td><td>"+res[i][j].cantidad_caja+"</td><td>"+res[i][j].fecha+"</td></tr>");
+                          if (x==0) {
+                            tabladatos.append("<tr align=center style=background-color:#f4f4f4 onmouseover='this.style.backgroundColor=\"white\"' onmouseout='this.style.backgroundColor=\"#f2f2f2\"'><td>"+res[i][j].tipo+"</td><td>"+res[i][j].cantidad_caja+"</td><td rowspan="+res[i].length+" style='font-size:20px'>"+res[i][j].fecha+"</td></tr>"); 
+                            x=1;
+                          } else {
+                            tabladatos.append("<tr align=center style=background-color:#f4f4f4 onmouseover='this.style.backgroundColor=\"white\"' onmouseout='this.style.backgroundColor=\"#f2f2f2\"'><td>"+res[i][j].tipo+"</td><td>"+res[i][j].cantidad_caja+"</td></tr>");  
+                          }
                         }
+                        x=0;
                         cont = 1;
                     } else {
                         for (var j = 0; j < res[i].length; j++) {
                             total = parseInt(total) + parseInt(res[i][j].cantidad_caja);
-                            tabladatos.append("<tr align=center style=background-color:white><td>"+res[i][j].tipo+"</td><td>"+res[i][j].cantidad_caja+"</td><td>"+res[i][j].fecha+"</td></tr>");                            
+                          if (x==0) {
+                            tabladatos.append("<tr align=center style='background-color:white' onmouseover='this.style.backgroundColor=\"#f2f2f2\"' onmouseout='this.style.backgroundColor=\"white\"'><td>"+res[i][j].tipo+"</td><td>"+res[i][j].cantidad_caja+"</td><td rowspan="+res[i].length+" style='font-size:20px'>"+res[i][j].fecha+"</td></tr>");                            
+                            x=1;
+                          } else {
+                            tabladatos.append("<tr align=center style='background-color:white' onmouseover='this.style.backgroundColor=\"#f2f2f2\"' onmouseout='this.style.backgroundColor=\"white\"'><td>"+res[i][j].tipo+"</td><td>"+res[i][j].cantidad_caja+"</td></tr>");                            
+                          }
                         }
+                        x=0;
                         cont = 0;
                     }     
-                    tabladatos.append("<tr align=center style=background-color:#CEECF5><td style='color:red; font-size:17px'>TOTAL</td><td style='color:red; font-size:17px'>"+total+"</td><td ></td></tr>");                                                               
+                    tabladatos.append("<tr align=center style=background-color:#CEF6F5><td style='color:red; font-size:17px'>TOTAL</td><td style='color:red; font-size:17px'>"+total+"</td><td></td></tr>");                                                               
+                    total=0;
                 }
             }); 
         }                                                                                                                                            
@@ -90,7 +104,7 @@ var fecha_fin = $('#fecha_fin2').val();
                     total = parseInt(total) + parseInt(value.cantidad_caja);
                     tabladatos.append("<tr align=center><td>"+value.tipo+"</td><td>"+value.cantidad_caja+"</td></tr>");
                 });
-                tabladatos.append("<tr align=center style=background-color:#f1948a><td>TOTAL CAJAS</td><td>"+total+"</td></tr>");
+                tabladatos.append("<tr align=center style='background-color:#f1948a;font-size:18px'><td>TOTAL CAJAS</td><td>"+total+"</td></tr>");
             }); 
         }                                                                                                                                            
     }
@@ -121,7 +135,7 @@ var total = 0;
                     total = parseInt(total) + parseInt(value.cantidad_caja);
                     tabladatos.append("<tr align=center><td>"+value.tipo+"</td><td>"+value.cantidad_caja+"</td></tr>");
                 });
-                tabladatos.append("<tr align=center style=background-color:#f1948a><td>TOTAL CAJAS</td><td>"+total+"</td></tr>");
+                tabladatos.append("<tr align=center style='background-color:#f1948a;font-size:18px'><td>TOTAL CAJAS</td><td>"+total+"</td></tr>");
             }); 
         }                                                                                                                                            
     }
@@ -131,7 +145,8 @@ var total = 0;
 
 //LISTA MAPLES DADA DOS FECHAS 
 function cargar_lista_maple(){
-var cont = 0;   
+var cont = 0;  
+var x = 0; 
 var total_maple = 0;
 var total_huevo = 0; 
 var fecha_inicio = $('#fecha_inicio').val();
@@ -155,20 +170,34 @@ var fecha_fin = $('#fecha_fin').val();
                 for (var i = 0; i < res.length; i++) {
                     if (cont == 0) {
                         for (var j = 0; j < res[i].length; j++) {
-                            total_maple = parseInt(total_maple) + parseInt(res[i][j].cantidad_maple);
-                            total_huevo = parseInt(total_huevo) + parseInt(res[i][j].cantidad_huevo);   
-                            tabladatos.append("<tr align=center style=background-color:#f2f2f2><td>"+res[i][j].tipo+"</td><td>"+res[i][j].cantidad_maple+"</td><td>"+res[i][j].cantidad_huevo+"</td><td>"+res[i][j].fecha+"</td></tr>");                            
+                          total_maple = parseInt(total_maple) + parseInt(res[i][j].cantidad_maple);
+                          total_huevo = parseInt(total_huevo) + parseInt(res[i][j].cantidad_huevo);  
+                          if (x==0) { 
+                            tabladatos.append("<tr align=center style=background-color:#f2f2f2 onmouseover='this.style.backgroundColor=\"white\"' onmouseout='this.style.backgroundColor=\"#f2f2f2\"'><td>"+res[i][j].tipo+"</td><td>"+res[i][j].cantidad_maple+"</td><td>"+res[i][j].cantidad_huevo+"</td><td rowspan="+res[i].length+" style='font-size:20px'>"+res[i][j].fecha+"</td></tr>");                            
+                            x=1;
+                          } else {
+                            tabladatos.append("<tr align=center style=background-color:#f2f2f2 onmouseover='this.style.backgroundColor=\"white\"' onmouseout='this.style.backgroundColor=\"#f2f2f2\"'><td>"+res[i][j].tipo+"</td><td>"+res[i][j].cantidad_maple+"</td><td>"+res[i][j].cantidad_huevo+"</td></tr>");                                                        
+                          }
                         }
+                        x=0;
                         cont = 1;
                     } else {
                         for (var j = 0; j < res[i].length; j++) {
                             total_maple = parseInt(total_maple) + parseInt(res[i][j].cantidad_maple);
-                            total_huevo = parseInt(total_huevo) + parseInt(res[i][j].cantidad_huevo);                               
-                            tabladatos.append("<tr align=center style=background-color:white><td>"+res[i][j].tipo+"</td><td>"+res[i][j].cantidad_maple+"</td><td>"+res[i][j].cantidad_huevo+"</td><td>"+res[i][j].fecha+"</td></tr>");                            
+                            total_huevo = parseInt(total_huevo) + parseInt(res[i][j].cantidad_huevo);  
+                            if (x==0) {
+                                tabladatos.append("<tr align=center style=background-color:white onmouseover='this.style.backgroundColor=\"#f2f2f2\"' onmouseout='this.style.backgroundColor=\"white\"'><td>"+res[i][j].tipo+"</td><td>"+res[i][j].cantidad_maple+"</td><td>"+res[i][j].cantidad_huevo+"</td><td rowspan="+res[i].length+" style='font-size:20px'>"+res[i][j].fecha+"</td></tr>");                            
+                                x=1;
+                            } else {
+                                tabladatos.append("<tr align=center style=background-color:white onmouseover='this.style.backgroundColor=\"#f2f2f2\"' onmouseout='this.style.backgroundColor=\"white\"'><td>"+res[i][j].tipo+"</td><td>"+res[i][j].cantidad_maple+"</td><td>"+res[i][j].cantidad_huevo+"</td></tr>");                            
+                            }                             
                         }
+                        x=0;
                         cont = 0;
                     }   
-                    tabladatos.append("<tr align=center style=background-color:#ceecf5><td style='color:red; font-size:17px'>TOTAL</td><td style='color:red; font-size:17px;'>"+total_maple+"</td><td style='color:red; font-size:17px'>"+total_huevo+"</td><td></td></tr>");                            
+                    tabladatos.append("<tr align=center style=background-color:#CEF6F5><td style='color:red; font-size:17px'>TOTAL</td><td style='color:red; font-size:17px;'>"+total_maple+"</td><td style='color:red; font-size:17px'>"+total_huevo+"</td><td></td></tr>");                            
+                    total_maple=0;
+                    total_huevo=0;
                 }
             }); 
         }                                                                                                                                            
@@ -202,7 +231,7 @@ var fecha_fin = $('#fecha_fin2').val();
                     total_huevo = parseInt(total_huevo) + parseInt(value.cantidad_huevo);
                     tabladatos.append("<tr align=center><td>"+value.tipo+"</td><td>"+value.cantidad_maple+"</td><td>"+value.cantidad_huevo+"</td></tr>");                            
                 });
-                tabladatos.append("<tr align=center style=background-color:#f1948a><td>TOTAL</td><td>"+total_maple+"</td><td>"+total_huevo+"</td></tr>");
+                tabladatos.append("<tr align=center style='background-color:#f1948a; font-size:18px' ><td>TOTAL</td><td>"+total_maple+"</td><td>"+total_huevo+"</td></tr>");
             }); 
         }                                                                                                                                            
     }
@@ -235,7 +264,7 @@ var total_huevo = 0;
                     total_huevo = parseInt(total_huevo) + parseInt(value.cantidad_huevo);
                     tabladatos.append("<tr align=center><td>"+value.tipo+"</td><td>"+value.cantidad_maple+"</td><td>"+value.cantidad_huevo+"</td></tr>");                            
                 });
-                tabladatos.append("<tr align=center style=background-color:#f1948a><td>TOTAL</td><td>"+total_maple+"</td><td>"+total_huevo+"</td></tr>");
+                tabladatos.append("<tr align=center style='background-color:#f1948a; font-size:18px'><td>TOTAL</td><td>"+total_maple+"</td><td>"+total_huevo+"</td></tr>");
             }); 
         }                                                                                                                                            
     }

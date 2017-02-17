@@ -299,11 +299,11 @@ function cargar_modal(id_control,galpon,id_fase_galpon,cantidad,cantidad_granel)
             $("#tipo").val(response[i].tipo);
             xxx = response[i].id_silo;
         }
-        /*$.get("lista_de_silos_aux/"+xxx, function (response) {
+       /* $.get("lista_de_silos_aux/"+xxx, function (response) {
             for (var i = 0; i < response.length; i++) {
                 $("select[name=id_silo]").append("<option value='" + response[i].id_silo + "'>" + response[i].nombre + " → " + response[i].tipo +"</option>");
             }
-        });   */      
+        });  */
     }); 
 
         $("#titulo").text("ALIMENTAR GALPON "+galpon);

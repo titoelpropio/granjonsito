@@ -2,7 +2,7 @@
 @section ('content')
 <input type="hidden" name="_token" value="{{ csrf_token()}}" id="token">
   
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
     <div class="pull-left"><h1>REPORTE DE INGRESO Y EGRESO</h1></font></div>
 
@@ -45,7 +45,7 @@
         <div class="col-sm-1 col-md-1  col-sm-1  col-xs-12 pull-right" style="margin: 5px; padding: -1px">
           <div class="form-group">  <B>DESDE: </B> </div>
         </div>
-     </div>
+  </div>       
 
             <!--div class="pull-left"><h1>REPORTE DE INGRESO Y EGRESO</h1></div>
             <div class="pull-right">            
@@ -55,9 +55,7 @@
                 <button id="btnPDF" class="btn btn-success" onclick="cargar_fechas()"><i class="fa fa-file-text" aria-hidden="true"></i> PDF</button>
             </div-->
 
-<table class="table table-striped table-bordered table-condensed table-hover">
-    <tr>
-        <td style="background-color: white">
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
             <H3>EGRESOS</H3>
             <table class="table table-striped table-bordered table-condensed table-hover">
                 <thead bgcolor=black style="color: white">
@@ -67,9 +65,9 @@
                 <tbody id="datos_e">
                 </tbody>
             </table>
-        </td>
-        <td></td>
-        <td style="background-color: white">
+  </div>       
+
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
             <H3>INGRESOS</H3>
             <table class="table table-striped table-bordered table-condensed table-hover">
                 <thead bgcolor=black style="color: white">
@@ -79,9 +77,10 @@
                 <tbody id="datos_i">
                 </tbody>
             </table>
-        </td>
-    </tr>
-</table>    
+  </div>       
+
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
 <table class="table table-striped table-bordered table-condensed table-hover">
 <tr>
     <td>
@@ -93,6 +92,7 @@
     </td>
 </tr>
 </table>        
+  </div>       
   
     </div>
 {!!Html::script('js/balance.js')!!} 

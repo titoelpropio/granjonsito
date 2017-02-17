@@ -28,7 +28,7 @@ function crearmaple1(){
         error:function(){
             $('#loading').css("display","none");
             alertify.alert("ERROR","NO SE PUDO GUARDAR LOS DATOS INTENTE NUEVAMENTE");
-            $('#btnregistrar').show();
+            setTimeout("location.reload()",2000);
         },
     });
 }
@@ -58,7 +58,7 @@ function eliminar_maple(id){
         },
         error:function(){
             $('#loading').css("display","none");
-            alertify.alert("ERROR","NO SE PUDO GUARDAR LOS DATOS INTENTE NUEVAMENTE");
+            alertify.alert("ERROR","NO SE PUDO ELIMINAR LOS DATOS INTENTE NUEVAMENTE");
             setTimeout("location.href='maple'",2000);
         },
     });

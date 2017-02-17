@@ -20,7 +20,7 @@
                 <thead bgcolor=black style="color: white">
                 <th><center>GALPON</center></th>
                 <th><center>FASE</center></th>
-                <th><center>NUMERO-FASE</center></th>
+                <th><center>SILO</center></th>
                 <th><center>CANTIDAD</center></th>
                 <th><center>FECHA</center></th>
                 <th><center>OPCION</center></th>
@@ -30,8 +30,8 @@
                     <tr>
                         <td><center>GALPON {{ $cons->numero_galpon}}</center></td>
                         <td><center>{{ $cons->nombre}}</center></td>
-                        <td><center>{{ $cons->numero_fase}}</center></td>
-                        <td><center>{{ $cons->cantidad}}</center></td>
+                        <td><center>{{ $cons->nombre_silo}}</center></td>
+                        <td><center>{{ $cons->cantidad}} kg.</center></td>
                         <td><center>{{ $cons->fecha}}</center></td>
                         <td><CENTER>
                     <button class="btn btn-primary"  data-toggle='modal' data-target='#myModal'  onclick="editar_consumo({{$cons->id}})">ACTUALIZAR</button>

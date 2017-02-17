@@ -29,8 +29,8 @@
                     <thead bgcolor=black style="color: white">
                         <th><center>ETAPA</center></th>
                         <th><center>GALPON</center></th>
-                        <th><center>FECHA DE INICIO</center></th>
-                        <th><center>CANTIDAD TOTAL DE MUERTAS</center></th>
+                        <!--th><center>FECHA DE INICIO</center></th-->
+                        <th><center>TOTAL MUERTAS</center></th>
                     </thead>
                     <tbody id="datos_r">
                     </tbody>

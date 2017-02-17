@@ -128,7 +128,6 @@ if (fecha_inicio=="" || cantidad_inicial=="" || cantidad_actual=="") {
                 $('#loading').css("display","none"); 
                 alertify.alert("ERROR","NO SE PUDO GUARDAR LOS DATOS INTENTE NUEVAMENTE");
                 setTimeout("location.href='edad'",2000);
-                $('#btnregistrar').show();
             },
         });
     }
@@ -216,7 +215,6 @@ else{
         },
         error:function(){
             alertify.alert("ERROR","NO SE PUDO GUARDAR LOS DATOS INTENTE NUEVAMENTE");
-            $("#btntraspaso").show();
             setTimeout("location.href='edad'",2000);
         },
     }); 
@@ -357,9 +355,8 @@ function dardebaja() {
         },
         error:function(){
             alertify.alert("ERROR","NO SE PUDO GUARDAR LOS DATOS INTENTE NUEVAMENTE");
-            $('#baja').show();
             $('#loading').css("display","none"); 
-            return;
+            setTimeout("location.reload()",2000);
         },
     });
 }

@@ -30,6 +30,7 @@ function crear_egreso() {
             alertify.alert("ERROR","NO SE PUDO GUARDAR LOS DATOS INTENTE NUEVAMENTE");
             $("#btnregistrar").show();
             $('#loading').css("display","none"); 
+            setTimeout("location.reload()",2000);
         }
     }); 
 }

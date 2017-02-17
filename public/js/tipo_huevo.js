@@ -29,6 +29,7 @@ id_maple = $("#id_maple").val();
                 $('#btnregistrar').show();
                 $('#loading').css("display","none");
                 alertify.alert("ERRROR","NO SE PUDO GUARDAR LOS DATOS INTENTE NUEVAMENTE");
+                setTimeout("location.reload()",2000);
             }
         });
 }        

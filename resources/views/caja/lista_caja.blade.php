@@ -56,7 +56,7 @@
     </div>
  </div>
 
-    <table class="table table-striped table-bordered table-condensed table-hover">
+    <table class="table-striped table-bordered table-condensed table-hover" style="width: 100%">
         <thead bgcolor=black style="color: white">
             <th><center>TIPO DE CAJA</center></th>
             <th><center>CANTIDAD DE CAJAS</center></th>

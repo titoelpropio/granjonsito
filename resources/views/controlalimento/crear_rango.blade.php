@@ -1,5 +1,6 @@
 @extends('layouts.admin')
 @section('content')
+@include('alerts.errors')
 @include('controlalimento.modal_rango')
 
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

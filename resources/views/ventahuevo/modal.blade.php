@@ -1,4 +1,4 @@
-  <div class="modal fade bd-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal fade bd-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -27,8 +27,8 @@
 
                 <tr align="center" style="background-color: #f1948a">
                 	<td>TOTAL</td>
-                	<td></td>                   
-                  <td></td>                  
+                	<td><font size="4" id="total_maple"></font><font size="4"></font></td>                   
+                  <td><font size="4" id="total_huevo"></font><font size="4"></font></td>                  
                   <td><font size="4" id="total"></font><font size="4"> Bs.</font></td>
                 </tr>
             </table>
@@ -42,7 +42,7 @@
 </div>
 
 <!--ANULAR VENTA HUEVO-->
-<div class="modal fade bd-example-modal-lg" id="myModal_anular" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade bd-example-modal-lg" id="myModal_anular" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">

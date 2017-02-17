@@ -26,7 +26,7 @@
                     <thead bgcolor=black style="color: white">
                         <th><center>ETAPA</center></th>
                         <th><center>GALPON</center></th>
-                        <th><center>FECHA INICIO</center></th>
+                        <!--th><center>FECHA INICIO</center></th-->
                         <th><center>MUERTAS</center></th>
                         <th><center>HUEVOS</center></th>
                         <th><center>POSTURA</center></th>

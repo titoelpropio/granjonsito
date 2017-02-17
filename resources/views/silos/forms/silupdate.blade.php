@@ -2,7 +2,7 @@
 {!!Form::hidden('id',null,['class'=>'form-control','readonly'])!!}
 <div class="form-group">
     {!!Form::label('nombre','Nombre:')!!}
-    {!!Form::text('nombre',null,['class'=>'form-control','readonly'])!!}
+    {!!Form::text('nombre',null,['class'=>'form-control'])!!}
 </div>
 <div class="form-group">
     {!!Form::label('capacidad','Capacidad:')!!}

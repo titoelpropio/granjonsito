@@ -2,7 +2,7 @@
 @section ('content')
 
 <input type="hidden" name="_token" value="{{ csrf_token()}}" id="token"> 
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<!--div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
     <div class="panel panel-green">
         <div class="panel-heading">
             <ul class="nav nav-pills">
@@ -11,10 +11,10 @@
             </ul>
         </div>  
     </div>
-</div>
+</div-->
 
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    <div class="pull-left"> <font size="5">VENTA DE HUEVOS </font> <font size="5" id="fecha"> </font></div>
+    <div class="pull-left"> <font size="5">VENTA DE HUEVOS</font> <font size="5" id="fecha"> </font></div>
 
     <div class="pull-right"> 
         <div class="col-sm-1 col-md-1  col-sm-1  col-xs-12 pull-right" style="width: 8%; margin: 0px; padding: 0px">
@@ -68,7 +68,7 @@
     <table class="table table-striped table-bordered table-condensed table-hover">
         <thead bgcolor=black style="color: white">
             <th><center>TIPO DE HUEVO</center></th>
-            <th><center>CANTIDAD DE HUEVOS</center></th>
+            <th><center>CANTIDAD DE MAPLES</center></th>
             <th><center>SALDO</center></th>
         </thead>
         <tbody id="datos_rht">

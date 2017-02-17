@@ -67,6 +67,9 @@ Route::resource('ingreso','IngresoController');
 Route::resource('compra','CompraController');
 Route::resource('reporte_compra','CompraController@reporte_compra');
 Route::get('lista_reporte_compra/{fecha_inicio}/{fecha_fin}','CompraController@lista_reporte_compra');
+Route::get('obtener_compra','CompraController@obtener_compra'); //AUMENTE ESTA RUTA
+Route::get('lista_compra','CompraController@lista_compra'); //AUMENTE ESTA RUTA
+Route::get('anular_compra/{fecha}','CompraController@anular_compra'); //AUMENTE ESTA RUTA
 
 
 //temperatura

@@ -88,9 +88,9 @@
                   <a class="dropdown-toggle" data-toggle="dropdown" href="">REPORTES<span class="caret"></span></a>
                   <ul class="dropdown-menu">
                       <li><a href="{!!URL::to('reporteponedoras')!!}">REPORTE DE POSTURA HUEVO</a></li>                                
-                      <li><a href="{!!URL::to('reportecajadiario')!!}">VENTA DE CAJAS</a></li>                                      
-                      <li><a href="{!!URL::to('reportehuevodiario')!!}">VENTA DE HUEVOS DESCARTE</a></li>                                
-                      <li><a href="{!!URL::to('reporte_compra')!!}">COMPRA DE ALIMENTOS</a></li>
+                      <li><a href="{!!URL::to('reportecaja')!!}">REPORTE VENTA DE CAJAS</a></li>                                      
+                      <li><a href="{!!URL::to('reportehuevo')!!}">REPORTE VENTA DE HUEVOS DESCARTE</a></li>                                
+                      <li><a href="{!!URL::to('reporte_compra')!!}">REPORTE COMPRA DE ALIMENTOS</a></li>
                       <li><a href="{!!URL::to('reportebalance')!!}">BALANCE GENERAL</a></li>     
                   </ul>
                 </li>
@@ -98,6 +98,7 @@
                   <a class="dropdown-toggle" data-toggle="dropdown" href="">ADMINISTRADOR<span class="caret"></span></a>
                   <ul class="dropdown-menu">                              
                       <li><a href="{!!URL::to('compra')!!}">COMPRA ALIMENTO</a></li>   
+                      <li><a href="{!!URL::to('lista_compra')!!}">ANULAR COMPRA ALIMENTO</a></li>   
                       <li><a href="{!!URL::to('categoria')!!}">REGISTRAR GASTOS</a></li>
                       <li><a href="{!!URL::to('egreso')!!}">REGISTRAR EGRESO</a></li>
                       <li><a href="{!!URL::to('ingreso')!!}">REGISTRAR INGRESO</a></li>  

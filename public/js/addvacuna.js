@@ -57,7 +57,7 @@ function crear_vacuna() {
         error:function(){
             $('#loading').css("display","none");
             alertify.alert("ERROR","NO SE PUDO GUARDAR LOS DATOS INTENTE NUEVAMENTE");
-            $('#btnregistrar').show();
+            setTimeout("location.reload()",2000);
         },
     });   
 }

@@ -9,7 +9,7 @@
       </div>
 
       <div class="modal-body">
-      
+       <?php //{!!Form::open(['route'=>'rango_edad.store', 'method'=>'POST'])!!}  ?>
         <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
 
       <div class="form-group">
@@ -21,11 +21,13 @@
           {!!Form::label('edad_max','Edad Maxima: ')!!}
           {!!Form::number('edad_max',null,['id'=>'edad_max','class'=>'form-control','placeholder'=>'Ingrese La Edad Maxima','onkeypress'=>'return bloqueo_de_punto(event)'])!!}
       </div>
-
+          {!!Form::text('estado',1,['id'=>'estado','class'=>'form-control'])!!}
 </div>
 
       <div class="modal-footer">
-      <button class="btn btn-primary" onclick="crear_rango_edad()" id="btnregistrar">REGISTRAR</button>
+     <?php // {!!Form::submit('REGISTRAR',['class'=>'btn btn-primary','id'=>'btn_guardar','onclick'=>'ucultar_boton()'])!!}      
+   // {!!Form::close()!!} ?>
+    <button class="btn btn-primary" onclick="crear_rango_edad()" id="btnregistrar">REGISTRAR</button>
       <button data-dismiss="modal"  class="btn btn-danger" onclick="limpiar()">CANCELAR</button>
       </div>
     </div>

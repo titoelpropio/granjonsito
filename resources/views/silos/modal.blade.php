@@ -12,7 +12,8 @@
 		{!!Form::hidden('id',$contador,['id'=>'id_silo','class'=>'form-control','readonly'])!!}
 		<div class="form-group">
 		    {!!Form::label('nombre','Nombre:')!!}
-		    {!!Form::text('nombre','SILO '.$contador,['id'=>'nombre','class'=>'form-control','readonly'])!!}
+		    <?php //{!!Form::text('nombre','SILO '.$contador,['id'=>'nombre','class'=>'form-control','readonly'])!!} ?>
+		    {!!Form::text('nombre',null,['id'=>'nombre','class'=>'form-control','placeholder'=>'Ingrese El nombre Del Silo'])!!}
 		</div>
 		<div class="form-group">
 		    {!!Form::label('capacidad','Capacidad Del Silo:')!!}

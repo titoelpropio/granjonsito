@@ -94,6 +94,7 @@ var token = $("#token").val();
             	$('#btnregistrar').show();
             	alertify.alert("ERROR","NO SE PUDO GUARDAR LOS DATOS INTENTE NUEVAMENTE");
             	$('#loading').css("display","none"); 
+            	setTimeout("location.reload()",2000);
             },
         });
 }

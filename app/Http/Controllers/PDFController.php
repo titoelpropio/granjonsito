@@ -28,16 +28,16 @@ class PDFController extends Controller{
   public function reportegalpon($id_edad, $fecha_inicio, $fecha_fin, $sw){
   if ($id_edad == 0) {
       if ($sw == 0) {
-          $galpon=DB::select("SELECT fases_galpon.fecha_inicio,galpon.numero AS nombre,SUM(postura_huevo.cantidad_total)as cantidad_total,round(AVG(postura_huevo.postura_p))as postura_p,SUM(fases_galpon.total_muerta)as muertas,edad.id,MAX(fases.nombre)as fase,MAX(fases.id)as id_fase,(0)as sw FROM galpon,edad,fases_galpon,fases,postura_huevo WHERE galpon.id=edad.id_galpon and edad.id=fases_galpon.id_edad AND fases_galpon.id_fase=fases.id AND fases_galpon.id=postura_huevo.id_fases_galpon AND edad.estado=1 AND fases.nombre='PONEDORA' GROUP BY edad.id ORDER BY id_fase DESC,galpon.numero");
+          $galpon=DB::select("SELECT fases_galpon.fecha_inicio,galpon.numero AS nombre,SUM(postura_huevo.cantidad_total)as cantidad_total,round(AVG(postura_huevo.postura_p))as postura_p,(fases_galpon.total_muerta)as muertas,edad.id,MAX(fases.nombre)as fase,MAX(fases.id)as id_fase,(0)as sw FROM galpon,edad,fases_galpon,fases,postura_huevo WHERE galpon.id=edad.id_galpon and edad.id=fases_galpon.id_edad AND fases_galpon.id_fase=fases.id AND fases_galpon.id=postura_huevo.id_fases_galpon AND edad.estado=1 AND fases.nombre='PONEDORA' GROUP BY edad.id ORDER BY id_fase DESC,galpon.numero");
       } else {
-          $galpon=DB::select("SELECT fases_galpon.fecha_inicio,galpon.numero AS nombre,SUM(postura_huevo.cantidad_total)as cantidad_total,round(AVG(postura_huevo.postura_p))as postura_p,SUM(fases_galpon.total_muerta)as muertas,edad.id,MAX(fases.nombre)as fase,MAX(fases.id)as id_fase FROM galpon,edad,fases_galpon,fases,postura_huevo WHERE galpon.id=edad.id_galpon and edad.id=fases_galpon.id_edad AND fases_galpon.id_fase=fases.id AND fases_galpon.id=postura_huevo.id_fases_galpon AND edad.estado=1 and postura_huevo.fecha BETWEEN '".$fecha_inicio."' AND DATE_SUB('".$fecha_fin."', INTERVAL -1 DAY) AND fases.nombre='PONEDORA' GROUP BY edad.id ORDER BY id_fase DESC,galpon.numero");
+          $galpon=DB::select("SELECT fases_galpon.fecha_inicio,galpon.numero AS nombre,SUM(postura_huevo.cantidad_total)as cantidad_total,round(AVG(postura_huevo.postura_p))as postura_p,(fases_galpon.total_muerta)as muertas,edad.id,MAX(fases.nombre)as fase,MAX(fases.id)as id_fase FROM galpon,edad,fases_galpon,fases,postura_huevo WHERE galpon.id=edad.id_galpon and edad.id=fases_galpon.id_edad AND fases_galpon.id_fase=fases.id AND fases_galpon.id=postura_huevo.id_fases_galpon AND edad.estado=1 and postura_huevo.fecha BETWEEN '".$fecha_inicio."' AND DATE_SUB('".$fecha_fin."', INTERVAL -1 DAY) AND fases.nombre='PONEDORA' GROUP BY edad.id ORDER BY id_fase DESC,galpon.numero");
       }
   }
   else{
       if ($sw == 0) {
-          $galpon=DB::select("SELECT fases_galpon.fecha_inicio,galpon.numero AS nombre,SUM(postura_huevo.cantidad_total)as cantidad_total,round(AVG(postura_huevo.postura_p))as postura_p,SUM(fases_galpon.total_muerta)as muertas,edad.id,MAX(fases.nombre)as fase,MAX(fases.id)as id_fase,(1)as sw FROM galpon,edad,fases_galpon,fases,postura_huevo WHERE galpon.id=edad.id_galpon and edad.id=fases_galpon.id_edad AND fases_galpon.id_fase=fases.id AND fases_galpon.id=postura_huevo.id_fases_galpon AND edad.estado=1 AND edad.id=".$id_edad." GROUP BY edad.id,fases.nombre ORDER BY id_fase DESC,galpon.numero");
+          $galpon=DB::select("SELECT fases_galpon.fecha_inicio,galpon.numero AS nombre,SUM(postura_huevo.cantidad_total)as cantidad_total,round(AVG(postura_huevo.postura_p))as postura_p,(fases_galpon.total_muerta)as muertas,edad.id,MAX(fases.nombre)as fase,MAX(fases.id)as id_fase,(1)as sw FROM galpon,edad,fases_galpon,fases,postura_huevo WHERE galpon.id=edad.id_galpon and edad.id=fases_galpon.id_edad AND fases_galpon.id_fase=fases.id AND fases_galpon.id=postura_huevo.id_fases_galpon AND edad.estado=1 AND edad.id=".$id_edad." GROUP BY edad.id,fases.nombre ORDER BY id_fase DESC,galpon.numero");
       } else {
-          $galpon=DB::select("SELECT fases_galpon.fecha_inicio,galpon.numero AS nombre,SUM(postura_huevo.cantidad_total)as cantidad_total,round(AVG(postura_huevo.postura_p))as postura_p,SUM(fases_galpon.total_muerta)as muertas,edad.id,MAX(fases.nombre)as fase,MAX(fases.id)as id_fase FROM galpon,edad,fases_galpon,fases,postura_huevo WHERE galpon.id=edad.id_galpon and edad.id=fases_galpon.id_edad AND fases_galpon.id_fase=fases.id AND fases_galpon.id=postura_huevo.id_fases_galpon AND edad.estado=1 and postura_huevo.fecha BETWEEN '".$fecha_inicio."' AND DATE_SUB('".$fecha_fin."', INTERVAL -1 DAY) AND edad.id=".$id_edad." GROUP BY edad.id,fases.nombre ORDER BY id_fase DESC,galpon.numero");
+          $galpon=DB::select("SELECT fases_galpon.fecha_inicio,galpon.numero AS nombre,SUM(postura_huevo.cantidad_total)as cantidad_total,round(AVG(postura_huevo.postura_p))as postura_p,(fases_galpon.total_muerta)as muertas,edad.id,MAX(fases.nombre)as fase,MAX(fases.id)as id_fase FROM galpon,edad,fases_galpon,fases,postura_huevo WHERE galpon.id=edad.id_galpon and edad.id=fases_galpon.id_edad AND fases_galpon.id_fase=fases.id AND fases_galpon.id=postura_huevo.id_fases_galpon AND edad.estado=1 and postura_huevo.fecha BETWEEN '".$fecha_inicio."' AND DATE_SUB('".$fecha_fin."', INTERVAL -1 DAY) AND edad.id=".$id_edad." GROUP BY edad.id,fases.nombre ORDER BY id_fase DESC,galpon.numero");
       }
   }
     $pdf=\PDF::loadView('pdf.galponreporte',compact('galpon'));
@@ -47,7 +47,7 @@ class PDFController extends Controller{
   //REPORTE DE LAS FASES
   public function reportefases($id_edad){ 
       if ($id_edad == 0) {
-          $fase=DB::select("SELECT fases.nombre,fases_galpon.fecha_inicio,galpon.numero,SUM(fases_galpon.total_muerta)as total_muerta,edad.id,MAX(fases.nombre)as fase,MAX(fases.id)as id_fase,(0)as sw FROM galpon,edad,fases_galpon,fases,postura_huevo WHERE galpon.id=edad.id_galpon and edad.id=fases_galpon.id_edad AND fases_galpon.id_fase=fases.id AND fases_galpon.id=postura_huevo.id_fases_galpon AND edad.estado=1 AND fases.nombre!='PONEDORA' AND fases_galpon.fecha_fin IS NULL  GROUP BY edad.id ORDER BY id_fase");
+          $fase=DB::select("SELECT fases.nombre,fases_galpon.fecha_inicio,galpon.numero,(fases_galpon.total_muerta)as total_muerta,edad.id,MAX(fases.nombre)as fase,MAX(fases.id)as id_fase,(0)as sw FROM galpon,edad,fases_galpon,fases,postura_huevo WHERE galpon.id=edad.id_galpon and edad.id=fases_galpon.id_edad AND fases_galpon.id_fase=fases.id AND fases_galpon.id=postura_huevo.id_fases_galpon AND edad.estado=1 AND fases.nombre!='PONEDORA' AND fases_galpon.fecha_fin IS NULL  GROUP BY edad.id ORDER BY id_fase");
       }else{
           $fase=DB::select("SELECT fases_galpon.fecha_inicio,galpon.id as id_galpon,galpon.numero,edad.id as id_edad,fases.nombre,fases_galpon.total_muerta,(1)as sw FROM galpon,edad,fases_galpon,fases WHERE galpon.id=edad.id_galpon AND edad.id=fases_galpon.id_edad AND fases_galpon.id_fase=fases.id AND edad.estado=1 and fases.nombre!='PONEDORA' AND edad.id=".$id_edad." ORDER BY fases.numero DESC");
       }
@@ -116,9 +116,9 @@ class PDFController extends Controller{
   public function ReporteCompraAlimento($fecha_inicio,$fecha_fin){
     $inicio=$fecha_inicio;
     $fin=$fecha_fin;
-    $compra = DB::select("SELECT CONCAT('COMPRA DE GRANO DE TIPO ',' ',alimento.tipo)AS detalle,IFNULL(SUM(compra.precio_compra),0)as total from silo,compra,alimento WHERE compra.id_silo=silo.id and silo.id_alimento=alimento.id  and compra.fecha BETWEEN '".$fecha_inicio."' AND DATE_SUB('".$fecha_fin."',INTERVAL -1 DAY) GROUP BY alimento.tipo
+    $compra = DB::select("SELECT CONCAT('COMPRA DE GRANO DE TIPO ',' ',alimento.tipo)AS detalle,IFNULL(SUM(compra.precio_compra),0)as total from silo,compra,alimento WHERE compra.id_silo=silo.id and silo.id_alimento=alimento.id  and compra.fecha BETWEEN '".$fecha_inicio."' AND DATE_SUB('".$fecha_fin."',INTERVAL -1 DAY) and compra.deleted_at IS NULL GROUP BY alimento.tipo
       UNION
-      SELECT ('saldo')AS detalle,IFNULL(SUM(compra.precio_compra),0)as total from silo,compra,alimento WHERE compra.id_silo=silo.id and silo.id_alimento=alimento.id  and compra.fecha BETWEEN '".$fecha_inicio."' AND DATE_SUB('".$fecha_fin."',INTERVAL -1 DAY)");
+      SELECT ('saldo')AS detalle,IFNULL(SUM(compra.precio_compra),0)as total from silo,compra,alimento WHERE compra.id_silo=silo.id and silo.id_alimento=alimento.id  and compra.fecha BETWEEN '".$fecha_inicio."' AND DATE_SUB('".$fecha_fin."',INTERVAL -1 DAY) and compra.deleted_at IS NULL");
     $pdf=\PDF::loadView('pdf.compra_alimento',compact('compra','inicio','fin'));
      return   $pdf->stream();
   }
@@ -132,7 +132,7 @@ class PDFController extends Controller{
         $fin=$fecha_fin;
         $egreso = DB::select("SELECT (categoria.nombre)as detalle,IFNULL(SUM(egreso_varios.precio),0)as total from egreso_varios,categoria WHERE categoria.id=egreso_varios.id_categoria and egreso_varios.fecha BETWEEN '".$fecha_inicio."' AND '".$fecha_fin."' GROUP BY egreso_varios.id_categoria
       UNION
-  SELECT CONCAT('COMPRA DE GRANO DE TIPO ',' ',alimento.tipo)AS detalle,IFNULL(SUM(compra.precio_compra),0)as TOTAL from silo,compra,alimento WHERE compra.id_silo=silo.id and silo.id_alimento=alimento.id  and compra.fecha BETWEEN '".$fecha_inicio."' AND DATE_SUB('".$fecha_fin."', INTERVAL -1 DAY) GROUP BY alimento.tipo");
+  SELECT CONCAT('COMPRA DE GRANO DE TIPO ',' ',alimento.tipo)AS detalle,IFNULL(SUM(compra.precio_compra),0)as total from silo,compra,alimento WHERE compra.id_silo=silo.id and silo.id_alimento=alimento.id  and compra.fecha BETWEEN '".$fecha_inicio."' AND DATE_SUB('".$fecha_fin."',INTERVAL -1 DAY) AND compra.deleted_at IS NULL GROUP BY alimento.tipo");
 
         $ingreso=DB::select("SELECT (categoria.nombre)as detalle,IFNULL(SUM(ingreso_varios.precio),0)as total from ingreso_varios,categoria WHERE categoria.id=ingreso_varios.id_categoria and ingreso_varios.fecha BETWEEN '".$fecha_inicio."' AND '".$fecha_fin."' GROUP BY ingreso_varios.id_categoria      
           UNION
@@ -148,9 +148,9 @@ class PDFController extends Controller{
   public function Reporte_Caja($fecha_inicio,$fecha_fin){
     $inicio=$fecha_inicio;
     $fin=$fecha_fin;
-    $compra = DB::select("SELECT CONCAT('COMPRA DE GRANO DE TIPO ',' ',alimento.tipo)AS detalle,IFNULL(SUM(compra.precio_compra),0)as total from silo,compra,alimento WHERE compra.id_silo=silo.id and silo.id_alimento=alimento.id  and compra.fecha BETWEEN '".$fecha_inicio."' AND DATE_SUB('".$fecha_fin."',INTERVAL -1 DAY) GROUP BY alimento.tipo
+    $compra = DB::select("SELECT CONCAT('COMPRA DE GRANO DE TIPO ',' ',alimento.tipo)AS detalle,IFNULL(SUM(compra.precio_compra),0)as total from silo,compra,alimento WHERE compra.id_silo=silo.id and silo.id_alimento=alimento.id  and compra.fecha BETWEEN '".$fecha_inicio."' AND DATE_SUB('".$fecha_fin."',INTERVAL -1 DAY) and compra.deleted_at IS NULL GROUP BY alimento.tipo
       UNION
-      SELECT ('saldo')AS detalle,IFNULL(SUM(compra.precio_compra),0)as total from silo,compra,alimento WHERE compra.id_silo=silo.id and silo.id_alimento=alimento.id  and compra.fecha BETWEEN '".$fecha_inicio."' AND DATE_SUB('".$fecha_fin."',INTERVAL -1 DAY)");
+      SELECT ('saldo')AS detalle,IFNULL(SUM(compra.precio_compra),0)as total from silo,compra,alimento WHERE compra.id_silo=silo.id and silo.id_alimento=alimento.id  and compra.fecha BETWEEN '".$fecha_inicio."' AND DATE_SUB('".$fecha_fin."',INTERVAL -1 DAY) and compra.deleted_at IS NULL");
     $pdf=\PDF::loadView('pdf.compra_alimento',compact('compra','inicio','fin'));
      return   $pdf->stream();
   }

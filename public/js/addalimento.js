@@ -7,14 +7,6 @@ $(document).ready(function(){
     } 
 });
 
-/*function verificar_text(){
-    if ($("#nombre").val()=="" || $("#tipo").val()=="") {
-        alertify.alert("ERROR","INTRODUSCA LOS DATOS REQUERIDOS");
-    } else {
-       alertify.success("GUARDADO CORRECTAMENTE");
-    }
-}*/
-
 function crearalimento(){
     $("#btnregistrar").hide();
     $('#loading').css("display","block");
@@ -35,7 +27,7 @@ function crearalimento(){
         },error: function(){
             $('#loading').css("display","none");
             alertify.alert("ERROR","NO SE PUDO GUARDAR LOS DATOS INTENTE NUEVAMENTE");
-            $("#btnregistrar").show();
+            setTimeout("location.reload()",2000);
         }
     });
 }

@@ -72,12 +72,13 @@ function detalle_galpon(sw){
     $.get(route,function(res){
         $(res).each(function(key,value){
             total_muertas = parseInt(total_muertas) + parseInt(value.muertas);
-            total_huevos = parseInt(total_huevos) + parseInt(value.cantidad_total);
-            tabladatos.append("<tr><td align=center>"+value.fase+"</td><td align=center> GALPON "+value.nombre+"</td><td align=center>"+value.fecha_inicio+"</td><td align=center>"+value.muertas+"</td><td align=center>"+value.cantidad_total+"</td><td align=center>"+value.postura_p+" %</td></tr>");
+            total_huevos = parseInt(total_huevos) + parseInt(value.cantidad_total); /*<td align=center>"+value.fecha_inicio+"</td>*/
+            tabladatos.append("<tr><td align=center>"+value.fase+"</td><td align=center> GALPON "+value.nombre+"</td>\n\
+                <td align=center>"+value.muertas+"</td><td align=center>"+value.cantidad_total+"</td><td align=center>"+value.postura_p+" %</td></tr>");
             $('#btnPDF').attr("disabled", false);
         });
        if (id_edad==0) {
-             tabladatos.append("<tr style='background-color:#CEECF5; color:red; font-size:19px' ><td align=center>TOTAL</td><td align=center></td><td align=center></td><td align=center>"+total_muertas+"</td><td align=center>"+total_huevos+"</td><td align=center></td></tr>");
+             tabladatos.append("<tr style='background-color:#CEECF5; color:red; font-size:19px' ><td align=center>TOTAL</td><td align=center></td><td align=center>"+total_muertas+"</td><td align=center>"+total_huevos+"</td><td align=center></td></tr>");
        }     
     }); 
 }
@@ -123,12 +124,12 @@ function detalle_galpon2(sw){
     $.get(route,function(res){
         $(res).each(function(key,value){
             total_muertas = parseInt(total_muertas) + parseInt(value.muertas);
-            total_huevos = parseInt(total_huevos) + parseInt(value.cantidad_total);
-            tabladatos.append("<tr><td align=center>"+value.fase+"</td><td align=center> GALPON "+value.nombre+"</td><td align=center>"+value.fecha_inicio+"</td><td align=center>"+value.muertas+"</td><td align=center>"+value.cantidad_total+"</td><td align=center>"+value.postura_p+" %</td></tr>");
+            total_huevos = parseInt(total_huevos) + parseInt(value.cantidad_total);   /*<td align=center>"+value.fecha_inicio+"</td>*/
+            tabladatos.append("<tr><td align=center>"+value.fase+"</td><td align=center> GALPON "+value.nombre+"</td><td align=center>"+value.muertas+"</td><td align=center>"+value.cantidad_total+"</td><td align=center>"+value.postura_p+" %</td></tr>");
             $('#btnPDF').attr("disabled", false);
         });
        if (id_edad==0) {
-            tabladatos.append("<tr style='background-color:#CEECF5; color:red; font-size:19px' ><td align=center>TOTAL</td><td align=center></td><td align=center></td><td align=center>"+total_muertas+"</td><td align=center>"+total_huevos+"</td><td align=center></td></tr>");             
+            tabladatos.append("<tr style='background-color:#CEECF5; color:red; font-size:19px' ><td align=center>TOTAL</td><td align=center></td><td align=center>"+total_muertas+"</td><td align=center>"+total_huevos+"</td><td align=center></td></tr>");             
        }                 
     }); 
 }
@@ -152,18 +153,18 @@ function detalle_fase(){
    if (id_edad==0) {
         $("#nombre").text("RENDIMIENTO DE TODAS LAS FASES");
    } else {
-        $("#nombre").text("RENDIMIENTO DEL "+fase);
+        $("#nombre").text("RENDIMIENTO DE LA "+fase);
    }
    var route = "detalle_fases/"+id_edad;
    $("#datos_r").empty();
     $.get(route,function(res){
         $(res).each(function(key,value){
-            total_muertas = parseInt(total_muertas) + parseInt(value.total_muerta);            
-            tabladatos.append("<tr><td align=center>"+value.nombre+"</td><td align=center> GALPON "+value.numero+"</td><td align=center>"+value.fecha_inicio+"</td><td align=center>"+value.total_muerta+"</td></tr>");
+            total_muertas = parseInt(total_muertas) + parseInt(value.total_muerta);        /*<td align=center>"+value.fecha_inicio+"</td>*/    
+            tabladatos.append("<tr><td align=center>"+value.nombre+"</td><td align=center> GALPON "+value.numero+"</td><td align=center>"+value.total_muerta+"</td></tr>");
             $('#btnPDF').attr("disabled", false);
         });
         if (id_edad==0) {
-            tabladatos.append("<tr align=center style='background-color:#CEECF5; font-size:19px; color:red' ><td align=center>TOTAL</td><td align=center></td><td align=center></td><td align=center>"+total_muertas+"</td></tr>");
+            tabladatos.append("<tr align=center style='background-color:#CEECF5; font-size:19px; color:red' ><td align=center>TOTAL</td><td align=center></td><td align=center>"+total_muertas+"</td></tr>");
         }
     }); 
 }

@@ -9,6 +9,8 @@ $(document).ready(function(){
 
 //////////////VENTA DE HUEVOS///////////////
 function cargartabla_ventahuevo(id) {   //CARGAR TABLA VENTA DE HUEVOS
+    var total_huevo=0;
+    var total_maple=0;
     $("#id_venta").val(id);
     $('#datos').empty();
     var tabladatos = $('#datos');
@@ -23,8 +25,12 @@ function cargartabla_ventahuevo(id) {   //CARGAR TABLA VENTA DE HUEVOS
 
     $.get(route, function (res) {
     $(res).each(function (key, value) {
+            total_maple=parseInt(total_maple)+parseInt(value.cantidad_maple);
+            total_huevo=parseInt(total_huevo)+parseInt(value.cantidad_huevo);
             tabladatos.append("<tr align=center><td>" + value.tipo + "</td><td>" + value.cantidad_maple + "</td><td>" + value.cantidad_huevo + "</td><td>" + value.subtotal_precio + "</td></tr>");
         });
+        $("#total_huevo").text(total_huevo);
+        $("#total_maple").text(total_maple);
     });
 }
 
@@ -89,7 +95,7 @@ function anular_venta_huevo(){   //ANULAR VENTA CAJAS
         error:function(){
             $('#loading').css("display","none");
             alertify.alert("ERROR","NO SE PUDO GUARDAR LOS DATOS INTENTE NUEVAMENTE");
-            return;
+            setTimeout("location.reload()",2000);
         },
     });
   },

@@ -8,6 +8,7 @@ $(document).ready(function(){
 });
 
 function cargartabla(id) {  //CARGAR TABLA VENTA CAJA
+    var total_caja=0;
     $("#id_venta").val(id);
     $('#datos').empty();
     var tabladatos = $('#datos');
@@ -17,13 +18,15 @@ function cargartabla(id) {  //CARGAR TABLA VENTA CAJA
 
     $.get(route_2, function (res) {
         $("#fecha").text("FECHA: "+res[0].fecha);
-        $("#total").text(res[0].precio);        
+        $("#total").text(res[0].precio);         
     });
 
     $.get(route, function (res) {
-    $(res).each(function (key, value) {
+    $(res).each(function (key, value) { 
+            total_caja=parseInt(total_caja)+parseInt(value.cantidad_caja);
             tabladatos.append("<tr align=center><td>" + value.tipo + "</td><td>" + value.cantidad_caja + "</td><td>" + value.subtotal_precio + "</td></tr>");
         });
+        $("#total_caja").text(total_caja);  
     });
 }
 
@@ -88,7 +91,7 @@ function anular_venta_caja(){   //ANULAR VENTA CAJAS
         error:function(){
             $('#loading').css("display","none");
             alertify.alert("ERROR","NO SE PUDO GUARDAR LOS DATOS INTENTE NUEVAMENTE");
-            return;
+            setTimeout("location.reload()",2000);
         },
     });
   },

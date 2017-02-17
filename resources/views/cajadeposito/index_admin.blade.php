@@ -12,7 +12,7 @@
 <table class="table table-striped table-bordered table-condensed table-hover"><tr>
 	<td> <div class="pull-left"><h1>DEPOSITO DE CAJAS </h1></div> <input type="hidden" id="fecha"></td>
 	<td><div class="pull-right">@foreach($huevo_acumulado as $aux2)
-			<font color="red" size="4">CANTIDAD DE HUEVOS: </font><input type="text" style="width:120px;height:40px;font-size:30px;text-align: center" value="{{$aux2->cantidad}}" id="huevo_acumulado">
+			<font color="red" size="4">CANTIDAD DE HUEVOS: </font><input type="text" style="width:120px;height:40px;font-size:30px;text-align: center" value="{{$aux2->cantidad}}" id="huevo_acumulado" onkeypress="return bloqueo_de_punto(event)">
 	@endforeach  <button class="btn-sm btn-info" onclick="actualizar_huevo()">MODIFICAR</button>	</div></td>
 </tr></table>
 				 @foreach($caja_deposito as $aux2)

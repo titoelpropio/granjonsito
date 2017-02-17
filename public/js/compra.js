@@ -1,16 +1,27 @@
 $(document).ready(function () {
-    if ($('#token').val()=="") {
-        location.reload();
-    }else{
-        $('#oculta').hide(5000);    
-        for (var i = 1; i <= 11; i++) {
-            variacion(i);
-        }
-        $(function (){ $("#datetimepicker1").datetimepicker({ viewMode: 'days',  format: 'YYYY-MM-DD' }); });
-        $(function (){ $("#datetimepicker2").datetimepicker({ viewMode: 'days',  format: 'YYYY-MM-DD' }); });
-        $('#btnPDF2').attr("disabled", true);
-        $('#loading').css("display","none");
-    }    
+    /*AUMENTE TODO ESTO*/ //AUMENTE ESA RUTA Y UNA CONSULTA BUSCAR EN ROUTE LA RUTA Y A CONSULTA EN EL CONTROLADOR DE COMPRA
+    var route="obtener_compra"
+    $.get(route, function (res) {
+          $(res).each(function (key, value) {
+            variacion(value.id);            
+          });
+    });
+    /*HASTA ACA*/
+    $('#oculta').hide(5000);    
+    $(function (){ $("#datetimepicker1").datetimepicker({ viewMode: 'days',  format: 'YYYY-MM-DD' }); });
+    $(function (){ $("#datetimepicker2").datetimepicker({ viewMode: 'days',  format: 'YYYY-MM-DD' }); });
+    $('#btnPDF2').attr("disabled", true);
+    $('#loading').css("display","none");
+    var hoy = new Date();
+    var dd = hoy.getDate();
+    var mm = hoy.getMonth() + 1; //hoy es 0!
+    var yyyy = hoy.getFullYear();
+    if (dd < 10) {  dd = '0' + dd }
+    if (mm < 10) {  mm = '0' + mm  }
+    hoy = yyyy + '-' + mm + '-' + dd;
+    $('#fecha_inicio').val(hoy);
+    $('#fecha_fin').val(hoy);    
+    cargar_lista_comra();
 });
 
 function obtener_id_silo(id_silo) {
@@ -138,4 +149,21 @@ function cargar_fechas(){
     var fecha_inicio = $('#fecha_inicio').val();
     var fecha_fin = $('#fecha_fin').val(); 
     window.open('Reporte_Compra_Alimento/'+fecha_inicio+'/'+fecha_fin);                                                    
+}
+
+function cargar_lista_comra(){
+    var fecha=$('#fecha_inicio').val();
+    var tabladatos=$("#datos");
+    var route2 = "anular_compra/"+fecha;
+    $("#datos").empty();
+    $.get(route2, function (res) {
+    $("#datos").empty();
+        $(res).each(function (key, value) {
+            tabladatos.append("<tr align=center style='background-color:white' onmouseover='this.style.backgroundColor=\"#F6CED8\"' onmouseout='this.style.backgroundColor=\"white\"'><td>"+value.nombre_silo+"</td><td>"+value.nombre+"</td><td>"+value.tipo+"</td><td>"+value.cantidad_total+" kg.</td><td>"+value.precio_compra+" Bs.</td><td>"+value.fecha+"</td><td><center><button value="+value.id_compra+" class='btn btn-danger' data-toggle='modal' data-target='#myModal' onclick='anular_compras("+value.id_compra+")' >ANULAR COMPRA</button></td></tr>");           
+        });
+    });   
+}
+
+function anular_compras(id_compra) {
+    $("#id_compra").val(id_compra);
 }
