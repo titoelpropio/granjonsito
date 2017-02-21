@@ -1,7 +1,7 @@
 @extends ('layouts.admin')
 @section ('content')
 @include('alerts.cargando')
-<div id='loading' style="display: none" ><img src='{{asset('images/loading.gif')}}' style='margin:0 auto; position: absolute; top: 50%; left: 50%; margin: -30px 0 0 -30px;'></div>
+
 @include('galpon.modal_alimento')
 @include('galpon.mensaje')
 <?php $cont = 0;$x=1; $x2=9; 

@@ -149,7 +149,7 @@ $(document).keypress(function (e) {
                                     success: function () {
                                         $('#cant_actual' + id).text(gallinas_actual);
                                         $('#muerta' + id).text(total_muerta);
-                                        alertify.success("GUARDADO CORECCTAMENTE"); //DESDE ACA ES LO DE LAS POSTURA
+                                          alertify.success(" <img src='http://granja.local:8080/laravel/public/images/Gallo-Despertador.gif' style=' position: relative;height:100px; widht:100px '><samp><bold>GUARDADO</samp></span>"); //DESDE ACA ES LO DE LAS POSTURA
                                         $('#gmd' + id).text(gallina_muerta_diaria);
                                         $("#total_galpones" + id).text(total_huevo);
                                         $("#ph" + id).text(postura_huevo + " %");
@@ -166,7 +166,7 @@ $(document).keypress(function (e) {
                                 });
 
                             } else {//CUANDO NO INTRODUCE LAS MUERTAS VA POS ACA
-                                alertify.success("GUARDADO CORECCTAMENTE");
+                                alertify.success(" <img src='http://granja.local:8080/laravel/public/images/Gallo-Despertador.gif' style=' position: relative;height:100px; widht:100px '><samp><bold>GUARDADO</samp></span>");
                                 $('#gmd' + id).text(gallina_muerta_diaria);
                                 $("#total_galpones" + id).text(total_huevo);
                                 $("#ph" + id).text(postura_huevo + " %");
