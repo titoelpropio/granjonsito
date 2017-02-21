@@ -68,7 +68,7 @@ class VacunaGalponController extends Controller {
           $dia=$value->dias;
         }
         if ($request->ajax()) {
-            $resultado = DB::select(x"select g.nombre as galpon,edad.edad,v.nombre, v.detalle,g.id as idgalpon,v.id as idvacuna FROM galpon g, edad,vacuna v WHERE v.deleted_at is null and g.id=edad.id_galpon and edad.edad+". $dia . "=v.edad and v.estado=1 and edad.estado=1 and (not EXISTS(select * from galpon, galpon_vacuna, vacuna where v.id=galpon_vacuna.id_vacuna AND g.id=galpon.id and vacuna.id=galpon_vacuna.id_vacuna and date_format(galpon_vacuna.fecha,'%Y/%M/%d')=date_format(now(),'%Y/%M/%d')))");
+            $resultado = DB::select("select g.nombre as galpon,edad.edad,v.nombre, v.detalle,g.id as idgalpon,v.id as idvacuna FROM galpon g, edad,vacuna v WHERE v.deleted_at is null and g.id=edad.id_galpon and edad.edad+". $dia . "=v.edad and v.estado=1 and edad.estado=1 and (not EXISTS(select * from galpon, galpon_vacuna, vacuna where v.id=galpon_vacuna.id_vacuna AND g.id=galpon.id and vacuna.id=galpon_vacuna.id_vacuna and date_format(galpon_vacuna.fecha,'%Y/%M/%d')=date_format(now(),'%Y/%M/%d')))");
             return response()->json($resultado);
         }
     }
