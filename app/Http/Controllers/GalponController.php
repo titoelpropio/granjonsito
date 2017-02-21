@@ -95,7 +95,7 @@ public function update_galpon(Request $request) {
 
     public function obtenerdadafecha(Request $request) {
         if ($request->ajax()) {
-            $resultado = DB::select("SELECT postura_huevo.id as id_postura_huevo,celda1,celda2,celda3,celda4,postura_huevo.postura_p,postura_huevo.cantidad_total,galpon.id as id_galpon,galpon.numero,edad.id as id_edad,fases_galpon.total_muerta,postura_huevo.cantidad_muertas from postura_huevo,galpon,edad,fases_galpon,fases WHERE edad.id_galpon=galpon.id and fases_galpon.id_edad=edad.id and postura_huevo.id_fases_galpon=fases_galpon.id AND fases.id=fases_galpon.id_fase AND fases.nombre='PONEDORA' and edad.estado=1 and Date_format(postura_huevo.fecha,'%Y/%M/%d')=Date_format('".$request->fecha."','%Y/%M/%d') order by numero");
+            $resultado = DB::select("SELECT postura_huevo.id as id_postura_huevo,celda1,celda2,celda3,celda4,postura_huevo.postura_p,postura_huevo.cantidad_total,galpon.id as id_galpon,galpon.numero,edad.id as id_edad,fases_galpon.total_muerta,postura_huevo.cantidad_muertas from postura_huevo,galpon,edad,fases_galpon,fases WHERE edad.id_galpon=galpon.id and fases_galpon.id_edad=edad.id and postura_huevo.id_fases_galpon=fases_galpon.id AND fases.id=fases_galpon.id_fase AND fases.nombre='PONEDORA'  and Date_format(postura_huevo.fecha,'%Y/%M/%d')=Date_format('".$request->fecha."','%Y/%M/%d') order by numero");
             return response()->json($resultado);
         }
     }
