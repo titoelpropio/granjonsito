@@ -39,3 +39,24 @@
     </div>
   </div>
 </div>
+
+<!--MODAL ELIMINAR VACUNA-->
+  <div class="modal fade" id="MyModalEliminar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-body">      
+      {!!Form::open(['route'=>['vacuna.destroy','null'],'method'=>'DELETE'])!!}      
+        <h2 align="center">DESEA ELIMINAR ESTA VACUNA</h2>
+        {!!Form::hidden('id_vac',null,['id'=>'id_vac','class'=>'form-control'])!!}
+      </div>
+
+      <div class="modal-footer">
+          {!!Form::submit('ACEPTAR',['class'=>'btn btn-primary','id'=>'btn_guardar','onclick'=>'ucultar_boton()'])!!}
+    {!!Form::close()!!}
+          <!--button class="btn btn-primary" onclick="crear_vacuna()" id="btnregistrar">REGISTRAR</button-->
+          <button data-dismiss="modal"  class="btn btn-danger">CANCELAR</button>  
+      </div>
+    </div>
+  </div>
+</div>

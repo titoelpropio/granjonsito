@@ -11,7 +11,9 @@
               <ul class="nav nav-pills">
                 <li class="active"><a href="{!!URL::to('vacuna')!!}">REGISTRAR VACUNAS</a></li>
                 <li class="active"><a href="{!!URL::to('lista_control_vacuna')!!}">LISTA DE CONTROL DE VACUNAS</a></li>    
-                <li class="active"><a href="{!!URL::to('vacuna_emergente')!!}">LISTA DE VACUNAS EMERGENTES</a></li>                    
+                <li class="active"><a href="{!!URL::to('vacuna_emergente')!!}">LISTA DE VACUNAS EMERGENTES</a></li>                                    
+                <li class="active"><a href="{!!URL::to('consumo_vacuna_emergente')!!}">LISTA CONSUMO VACUNAS</a></li> 
+
             </ul>
         </div> 
     </div>

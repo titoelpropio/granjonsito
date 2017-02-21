@@ -5,7 +5,7 @@
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header" id="espacio_2">
         <h3 id="titulo" class="modal-title"></h3>
       </div>
 
@@ -58,7 +58,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header" id="espacio">
-       <H1 id="mensaje_vacuna"></H1>
+       <H2 id="mensaje_vacuna"></H2>
       </div>
       <div class="modal-body">
      
@@ -71,13 +71,13 @@
 
     <div class="form-group">
       {!!Form::label('precio','Precio:')!!}
-      {!!Form::text('precio',null,['id'=>'precio','class'=>'form-control','placeholder'=>'Ingrese La Capacidad Total','onkeypress'=>'return bloqueo_de_punto(event)'])!!}
+      {!!Form::text('precio',null,['id'=>'precio','class'=>'form-control','placeholder'=>'Ingrese La Capacidad Total','onkeypress'=>'return numerosmasdecimal(event)'])!!}
     </div>
     <input type="hidden" id="precio_aux">
   </div>
 
       <div class="modal-footer">
-      <button class="btn btn-primary" onclick="consumir_vacuna()" id="btn_consumir">CONSUMIR</button>
+      <button class="btn btn-primary" onclick="consumir_vacuna_cria()" id="btn_consumir">CONSUMIR</button>
       {!!link_to('#', $title='CANCELAR', $attributes = ['id'=>'cancelar','data-dismiss'=>'modal','class'=>'btn btn-danger'], $secure = null)!!}
       </div>
     </div>

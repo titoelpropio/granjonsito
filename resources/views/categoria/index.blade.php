@@ -22,6 +22,7 @@
 					if ($cat->tipo==1) {echo "INGRESO";} ?> </center></td>
 					<td><CENTER>
 					{!!link_to_route('categoria.edit', $title = 'ACTUALIZAR', $parameters = $cat->id, $attributes = ['class'=>'btn btn-primary'])!!}
+					<button class="btn btn-danger" data-toggle='modal' data-target='#ModalEliminarGastos' onclick="EliminarGastos({{$cat->id}})">ELIMINAR</button>
 					</CENTER></td>
 				</tr>
 				@endforeach

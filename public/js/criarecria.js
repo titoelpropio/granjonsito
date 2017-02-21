@@ -186,6 +186,7 @@ function mostrarcriamuertas() {
 }
 
 function cargar_modal(id_control,galpon,id_fase_galpon,cantidad,cantidad_granel){
+    var control = id_control;  
     if (control==0) {
         $("select[name=id_silo]").empty();
         $("select[name=id_silo]").addClass("form-control"); 
@@ -197,20 +198,27 @@ function cargar_modal(id_control,galpon,id_fase_galpon,cantidad,cantidad_granel)
         $("select[name=id_silo]").addClass("form-control");   
         var control = $('#id_control'+galpon).text(); 
         $.get("lista_de_silos/"+control, function (response) {
-            for (var i = 0; i < response.length; i++) {
-                $("select[name=id_silo]").append("<option value='" + response[i].id_silo + "'>" + response[i].nombre + " → " + response[i].tipo +"</option>");
-                $("#tipo").val(response[i].tipo);
+            if (response.length==0) {
+                $("#espacio_2").css({'background':'#F5A9A9'});
+                $("#btn_aceptar").hide();
+                $("#titulo").text("EL ALIMENTO "+ $("#id_alimento"+galpon).text() + " NO SE ENCUENTRA EN NINGUN SILO REGISTRADO");
+            } else {
+                $("#espacio_2").css({'background':'#A9F5F2'});
+                for (var i = 0; i < response.length; i++) {
+                    $("select[name=id_silo]").append("<option value='" + response[i].id_silo + "'>" + response[i].nombre + " → " + response[i].tipo +"</option>");
+                    $("#tipo").val(response[i].tipo);
+                }
+                $("#titulo").text("ALIMENTAR FASE "+galpon);
+                $("#id_galpon").val(galpon);
+                $("#id_fase_galpon").val(id_fase_galpon);
+                $("#cantidad_actual_g").val($("#cant_actual"+galpon).text());  
+                id=0;
+                $("#btn_aceptar").show();
+                $("#id_control").val($('#id_control'+galpon).text());
+                $("#cantidad_granel").val($('#c_granel_g'+galpon).text());
+                $("#cantidad").val($('#cantidad_g'+galpon).text());
             }
         }); 
-        $("#titulo").text("ALIMENTAR FASE "+galpon);
-        $("#id_galpon").val(galpon);
-        $("#id_fase_galpon").val(id_fase_galpon);
-        $("#cantidad_actual_g").val($("#cant_actual"+galpon).text());  
-        id=0;
-        $("#btn_aceptar").show();
-        $("#id_control").val($('#id_control'+galpon).text());
-        $("#cantidad_granel").val($('#c_granel_g'+galpon).text());
-        $("#cantidad").val($('#cantidad_g'+galpon).text());
     }
 }
 
@@ -343,8 +351,9 @@ function vacunas(){
 }
 
 function cargar_id_control_vacuna(id_control,precio){
+    $("#btn_consumir").show();    
     $("#cantidad_vac").val(1);
-      $('#loading').css("display","block"); 
+    $('#loading').css("display","block"); 
     $("#precio").val(precio);
     $("#precio_aux").val(precio);
     $("#id_control_vacuna").val(id_control);
@@ -370,8 +379,38 @@ function calcular(){
         $("#precio").val("");        
         $("#btn_consumir").hide();
     } else {
-        var dato = (parseFloat($("#cantidad_vac").val()) * parseFloat($("#precio_aux").val())).toFixed(2);
-        $("#precio").val(dato);
+        var dato = parseFloat($("#cantidad_vac").val()) * parseFloat($("#precio_aux").val());
+        $("#precio").val(dato.toFixed(2));
         $("#btn_consumir").show();
     }
+}
+
+function consumir_vacuna_cria(){
+    $('#loading').css("display","block");
+    $("#btn_consumir").hide();
+    var cantidad = $("#cantidad_vac").val();
+    var precio = $("#precio").val();
+    var id_control_vacuna = $("#id_control_vacuna").val();
+    var token = $("#token").val(); 
+    $.ajax({
+        url: 'consumo_vacuna',
+        headers: {'X-CSRF-TOKEN': token},
+        type: 'POST',
+        dataType: 'json',
+        data: {cantidad:cantidad, precio:precio, id_control_vacuna:id_control_vacuna, estado:1},
+        success: function(){
+            alertify.success("VACUNA CONSUMIDA CORRECTAMENTE");
+            $('#myModalConsumo').modal('hide');
+            $('#loading').css("display","none");
+            $('#id_consumir').show();  
+            $("#id_control_vacuna").val("");
+            $("#cantidad_vac").val("");
+            $("#precio").val("");  
+            $("#btn_consumir").show();                     
+        },
+        error: function(){
+            alertify.alert("NO SE PUDO CONSUMIR INTENTE NUEVAMENTE");
+            setTimeout("location.href='criarecria'",2000);
+        },
+    });
 }

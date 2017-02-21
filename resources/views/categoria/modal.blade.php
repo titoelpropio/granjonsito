@@ -2,7 +2,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 id="titulogalpon" class="modal-title" >REGISTRAR CATEGORIA</h3>
+        <h3 id="titulogalpon" class="modal-title" >REGISTRAR GASTOS</h3>
       </div>
 
       <div class="modal-body">
@@ -23,6 +23,33 @@
 
       <div class="modal-footer">
       {!!Form::submit('REGISTRAR',['class'=>'btn btn-primary','id'=>'btn_guardar','onclick'=>'ucultar_boton()'])!!}
+    {!!Form::close()!!}      
+      <!--button class="btn btn-primary" id="btnregistrar" onclick="crear_categoria()">REGISTRAR</button-->
+            <button data-dismiss="modal"  class="btn btn-danger">CANCELAR</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--ELIMINAR GASTOS-->
+<div class="modal fade" id="ModalEliminarGastos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="titulogalpon" class="modal-title" >ELIMINAR GASTOS</h3>
+      </div>
+
+      <div class="modal-body">
+      {!!Form::open(['route'=>['categoria.destroy','null'],'method'=>'DELETE'])!!}      
+
+        <div class="form-group">
+            {!!Form::text('id_gasto',null,['id'=>'id_gasto'])!!}
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+      {!!Form::submit('ACEPTAR',['class'=>'btn btn-primary','id'=>'btn_guardar','onclick'=>'ucultar_boton()'])!!}
     {!!Form::close()!!}      
       <!--button class="btn btn-primary" id="btnregistrar" onclick="crear_categoria()">REGISTRAR</button-->
             <button data-dismiss="modal"  class="btn btn-danger">CANCELAR</button>

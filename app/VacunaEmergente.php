@@ -23,7 +23,7 @@ class VacunaEmergente  extends Model implements AuthenticatableContract,
 
 
 
- protected $fillable = ['id','nombre', 'detalle','estado','precio'];
+ protected $fillable = ['nombre', 'detalle','estado','precio'];
 
 protected $dates = ['deleted_at'];
 

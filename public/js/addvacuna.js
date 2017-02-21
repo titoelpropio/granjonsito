@@ -64,3 +64,7 @@ function crear_vacuna() {
         },
     });   
 }
+
+function cargar_modal(id_vacuna){
+    $("#id_vac").val(id_vacuna);
+}

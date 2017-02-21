@@ -60,11 +60,12 @@ public function galponavacunar(){//lista los galpones a vacunar para el dia actu
     return redirect('/vacuna')->with('message','MODIFICADO CORRECTAMENTE'); 
  }
     
-public function destroy($id){
+public function destroy(Request $request){
+    $id=$request->get('id_vac');
     $vacuna=Vacuna::find($id);
     $vacuna->delete();
     $vacuna::destroy($id);
-    Session::flash('message','Vacuna Eliminada Correctamente');
+    Session::flash('message','VACUNA ELIMINADA');
     return Redirect::to('/vacuna');
 } 
     
@@ -75,7 +76,7 @@ public function listavacuna(){//lista de vacuna para el select en el modal del f
 }
 
 public function agregar_listavacuna($id_edad){//lista de vacuna nuevas q se van a agregar personalizado
-     $vacuna=DB::select("SELECT DISTINCT vacuna.id as id_vacuna,vacuna.edad,vacuna.nombre,vacuna.detalle,vacuna.estado from vacuna WHERE (NOT EXISTS(SELECT *from control_vacuna,edad WHERE vacuna.id=control_vacuna.id_vacuna AND edad.id=control_vacuna.id_edad AND edad.id=".$id_edad." order by edad))");
+     $vacuna=DB::select("SELECT DISTINCT vacuna.id as id_vacuna,vacuna.edad,vacuna.nombre,vacuna.detalle,vacuna.estado from vacuna WHERE vacuna.deleted_at IS NULL AND (NOT EXISTS(SELECT *from control_vacuna,edad WHERE vacuna.id=control_vacuna.id_vacuna AND edad.id=control_vacuna.id_edad AND edad.id=".$id_edad." order by edad))");
     return response()->json($vacuna);
 }
 

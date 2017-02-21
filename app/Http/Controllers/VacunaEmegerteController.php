@@ -20,12 +20,12 @@ public function __construct() {
 }
 
 function index(){
- $vacuna=VacunaEmergente::paginate(15);
+ $vacuna=VacunaEmergente::paginate(30);
     return view('vacuna_emergente.index',compact('vacuna'));
 }
 
 public function create(){
-    return view('vacuna.create');	
+    //return view('vacuna.create');	
 }
   
 public function store(VacunaEmergenteRequest $request){
@@ -57,11 +57,12 @@ public function galponavacunar(){//lista los galpones a vacunar para el dia actu
     return redirect('/vacuna_emergente')->with('message','MODIFICADO CORRECTAMENTE'); 
  }
     
-public function destroy($id){
+public function destroy(Request $request){
+    $id = $request->get("id_con_vac");
     $vacuna=VacunaEmergente::find($id);
     $vacuna->delete();
     $vacuna::destroy($id);
-    Session::flash('message','Vacuna Eliminada Correctamente');
+    Session::flash('message','VACUNA EMERGENTE ELIMINADAD');
     return Redirect::to('/vacuna_emergente');
 } 
     

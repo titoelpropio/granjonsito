@@ -23,7 +23,22 @@ $dias=0;
 <div class="alert alert-danger alert-dismissible" role="alert" hidden="true" id="mensaje" onLoad="">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 </div>
+
   <div class="table-responsive" style="height: 100%; width:100%">
+
+<table class="table table-striped table-bordered table-condensed table-hover">
+<thead>
+  @foreach($silo as $sil)
+<?php if ($sil->cantidad_minima > $sil->cantidad): ?>
+    <th style="background: #d73925; color: white; font-size: 12pt">  <center><samp>{{$sil->tipo}}:{{$sil->nombre}} ► {{$sil->cantidad}}Kg</samp></center></th>
+<?php else: ?>
+    <th style="background: #008d4c; color: white; font-size: 12pt">  <center><samp>{{$sil->tipo}}:{{$sil->nombre}} ► {{$sil->cantidad}}kg</samp></center></th>
+<?php endif ?>
+
+  @endforeach
+</thead>
+</table>
+
     <div class="pull-left"><font size="5">TEMPERATURA: <span id="temperatura">{{$temperatura[0]->temperatura}}</span> ºC</font></div>
 
    <div class="col-sm-2 col-md-2  col-sm-2  col-xs-12 pull-right" style="width: 7%; margin: 0px; padding: 0px">
@@ -71,7 +86,7 @@ and control_alimento.id_alimento=alimento.id and control_alimento.deleted_at IS 
                     else{   
                       if (count($consumo)==0) {//entra cuando no existe ningun consumo el dia actual
 
-                        echo "<td colspan=2 align='center' class=xl83 style='border-left:none; width:10.75%'><button class='btn btn-success' data-toggle='modal' data-target='#myModal' onclick=cargar_modal(".$id.",".$gal->numero.",".$gal->id_fase_galpon.",".$cantidad.",".$cantidad_granel.")><span data-status=1 id=id_alimento".$gal->numero.">". $alimento.":</span> <span id=cantidad_g".$gal->numero.">". $cantidad."</span> <span data-status=1 hidden id='c_granel_g".$gal->numero."'>". $cantidad_granel."</span> <span  data-status=1 hidden id=id_control".$gal->numero.">".$id."</span> Kg. </button></td> ";
+                        echo "<td colspan=2 align='center' class=xl83 style='border-left:none; width:10.75%'><button class='btn btn-success' data-toggle='modal' data-target='#myModal' onclick=cargar_modal(".$id.",".$gal->numero.",".$gal->id_fase_galpon.",".$cantidad.",".$cantidad_granel.")><span data-status=1 id=id_alimento".$gal->numero.">". $alimento."</span>: <span id=cantidad_g".$gal->numero.">". $cantidad."</span> <span data-status=1 hidden id='c_granel_g".$gal->numero."'>". $cantidad_granel."</span> <span  data-status=1 hidden id=id_control".$gal->numero.">".$id."</span> Kg. </button></td> ";
                       } else {
 
                       if ($consumo[$contador_consumo]->numero_galpon==$gal->numero) {
@@ -83,7 +98,7 @@ and control_alimento.id_alimento=alimento.id and control_alimento.deleted_at IS 
                              
                             } 
                         } else {
-                            echo "<td colspan=2 align='center' class=xl83 style='border-left:none; width:10.75%'><button class='btn btn-success' data-toggle='modal' data-target='#myModal' onclick=cargar_modal(".$id.",".$gal->numero.",".$gal->id_fase_galpon.",".$cantidad.",".$cantidad_granel.")><span data-status=1 id=id_alimento".$gal->numero.">". $alimento.":</span> <span data-status=1 id=cantidad_g".$gal->numero.">". $cantidad."</span> <span data-status=1 hidden id='c_granel_g".$gal->numero."'>". $cantidad_granel."</span> <span data-status=1 hidden id=id_control".$gal->numero.">".$id."</span> Kg.</button></td> ";
+                            echo "<td colspan=2 align='center' class=xl83 style='border-left:none; width:10.75%'><button class='btn btn-success' data-toggle='modal' data-target='#myModal' onclick=cargar_modal(".$id.",".$gal->numero.",".$gal->id_fase_galpon.",".$cantidad.",".$cantidad_granel.")><span data-status=1 id=id_alimento".$gal->numero.">". $alimento."</span>: <span data-status=1 id=cantidad_g".$gal->numero.">". $cantidad."</span> <span data-status=1 hidden id='c_granel_g".$gal->numero."'>". $cantidad_granel."</span> <span data-status=1 hidden id=id_control".$gal->numero.">".$id."</span> Kg.</button></td> ";
                         }
                       }
                   }

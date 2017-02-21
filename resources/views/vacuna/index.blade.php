@@ -12,6 +12,7 @@
                 <li class="active"><a href="{!!URL::to('vacuna')!!}">REGISTRAR VACUNAS</a></li>
                 <li class="active"><a href="{!!URL::to('lista_control_vacuna')!!}">LISTA DE CONTROL DE VACUNAS</a></li>                      
                 <li class="active"><a href="{!!URL::to('vacuna_emergente')!!}">LISTA DE VACUNAS EMERGENTES</a></li>    
+                <li class="active"><a href="{!!URL::to('consumo_vacuna_emergente')!!}">LISTA CONSUMO VACUNAS</a></li>                 
             </ul>
         </div> 
     </div>
@@ -34,12 +35,12 @@
                     </thead>
 
                     @foreach ($vacuna as $vac)
-                    <TR>    
+                    <TR style="background-color:white" onmouseover="this.style.backgroundColor='#F6CED8'" onmouseout="this.style.backgroundColor='white'">    
                     <td align="center">{{$vac->nombre}}</td>
                     <td align="center">{{$vac->edad}}</td>
 
                     <td align="left">{{$vac->detalle}}</td>
-                    <td align="left">{{$vac->precio}}</td>
+                    <td align="center">{{$vac->precio}} Bs.</td>
                     <td align="center">  <?php
                         if ($vac->estado == 1) {
                             echo '<button value="' . $vac->id . '" id="idbotonnestado" onclick="cambiarestado(0,this)" class="btn btn-success">ACTIVO</button>';
@@ -47,7 +48,8 @@
                             echo '<button value="' . $vac->id . '" id="idbotonnestado"  onclick="cambiarestado(1,this)" class="btn btn-warning">INACTIVO</button>';
                         ?></center></td>
                     <td align="center">
-                        {!!link_to_route('vacuna.edit', $title = 'ACTUALIZAR', $parameters = $vac->id, $attributes = ['class'=>'btn btn-primary','style'=>'color: white'])!!}</td>
+                        {!!link_to_route('vacuna.edit', $title = 'ACTUALIZAR', $parameters = $vac->id, $attributes = ['class'=>'btn btn-primary','style'=>'color: white'])!!}
+                        <button class="btn btn-danger" data-toggle="modal" data-target="#MyModalEliminar" onclick="cargar_modal({{$vac->id}})">ELIMINAR</button></td>
                     </TR>
                     @endforeach 
                 </table>

@@ -18,7 +18,7 @@ class CategoriaController extends Controller
   }
 
 	function index(){
-     $categoria=DB::select("SELECT id,nombre,tipo FROM categoria ORDER BY tipo");
+     $categoria=DB::select("SELECT id,nombre,tipo FROM categoria where categoria.deleted_at IS NULL ORDER BY tipo");
      return view('categoria.index',compact('categoria'));
 	}
   
@@ -44,5 +44,13 @@ class CategoriaController extends Controller
   public function edit($id){
       $categoria=Categoria::find($id);
       return view('categoria.edit',['categoria'=>$categoria]);
+  }
+
+  public function destroy(Request $request){
+     $id=$request->get('id_gasto');
+      $ingreso=Categoria::find($id);
+      $ingreso->delete();
+      Session::flash('message','ELIMINADO CORRECTAMENTE');
+     return Redirect::to('/categoria');
   }
 }

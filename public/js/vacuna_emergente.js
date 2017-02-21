@@ -80,3 +80,32 @@ function cargar_select() {
         });  
     }); 
 }
+
+function cargar_modal_vac_emer(id_vac,precio){
+    $("#btn_consumir").show();
+    $("#cantidad_vac").val(1);
+    $("#precio_vac").val(precio);
+    $("#id_vac").val(id_vac);
+    $("#precio_aux").val(precio);
+}
+
+function calcular(){
+    if ($("#cantidad_vac").val()=="") {
+        $("#precio_vac").val("");        
+        $("#btn_consumir").hide();
+    } else {
+        var dato = (parseFloat($("#cantidad_vac").val()) * parseFloat($("#precio_aux").val())).toFixed(2);
+        $("#precio_vac").val(dato);
+        $("#btn_consumir").show();
+    }
+}
+
+
+function CargarModalEmerEliminar(id){
+    $("#id_con_vac").val(id);
+}
+
+function esconder(){
+    $("#btn_eliminar").hide();
+    $("#btn_consumir").hide();
+}

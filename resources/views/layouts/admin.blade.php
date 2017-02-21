@@ -75,7 +75,7 @@
                     <li><a href="{!!URL::to('silo')!!}">REGISTRAR SILO</a></li> 
                     <li><a href="{!!URL::to('controlalimento')!!}">REGISTRAR CONTROL ALIMENTO</a></li>                      
                     <li><a href="{!!URL::to('vacuna')!!}">REGISTRAR VACUNA</a></li>     
-                    <li><a href="{!!URL::to('consumo')!!}">MODIFICAR CONSUMO</a></li>    
+                    <li><a href="{!!URL::to('consumo_alimento')!!}">MODIFICAR CONSUMO ALIMENTO</a></li>    
                   </ul>
                 </li>
 

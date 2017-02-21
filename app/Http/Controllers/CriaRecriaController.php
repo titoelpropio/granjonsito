@@ -20,6 +20,7 @@ class CriaRecriaController extends Controller {
     try {
               DB::beginTransaction();     
     $lista2=array();
+    $silo=DB::select("SELECT silo.id,silo.nombre,silo.cantidad,silo.cantidad_minima,silo.estado,alimento.tipo FROM silo,alimento WHERE silo.estado=1 AND alimento.id=silo.id_alimento and silo.deleted_at IS NULL");
     $consumo = DB::SELECT("SELECT alimento.tipo, consumo.cantidad, consumo.id,galpon.numero as numero_galpon,fases.numero as numero_fase,fases.nombre,consumo.fecha,silo.id as id_silo,silo.nombre as nombre_silo FROM silo,consumo,fases_galpon,fases,edad,galpon,alimento WHERE consumo.id_fase_galpon=fases_galpon.id and silo.id=consumo.id_silo AND fases_galpon.id_edad=edad.id and edad.id_galpon=galpon.id and fases_galpon.id_fase=fases.id and Date_format(consumo.fecha,'%Y/%M/%d')=Date_format(now(),'%Y/%M/%d') AND fases.nombre!='PONEDORA' and silo.id_alimento=alimento.id order by numero_fase");      
     $cria_recria=DB::select("SELECT galpon.id as id_galpon,edad.id as id_edad,fases_galpon.id as id_fase_galpon,galpon.numero,galpon.capacidad_total,DATEDIFF(now(),edad.fecha_inicio)AS edad,fases_galpon.cantidad_inicial,fases_galpon.cantidad_actual,fases.nombre,fases_galpon.total_muerta,fases.numero as numero_fase from edad,fases_galpon,galpon,fases WHERE edad.id_galpon=galpon.id and edad.id=fases_galpon.id_edad and fases.id=fases_galpon.id_fase and fases.nombre!='PONEDORA' AND fases_galpon.fecha_fin IS NULL and edad.estado=1 order by numero_fase");
     $gallina_muerta=DB::select("SELECT postura_huevo.cantidad_muertas,  fases.numero from postura_huevo, fases_galpon,fases,edad where postura_huevo.id_fases_galpon=fases_galpon.id and fases_galpon.id_fase=fases.id and fases_galpon.id_edad=edad.id and Date_format(postura_huevo.fecha,'%Y/%M/%d')=Date_format(now(),'%Y/%M/%d') and edad.estado=1 and fases_galpon.fecha_fin IS NULL and fases.nombre<>'PONEDORA'");          
@@ -37,7 +38,7 @@ class CriaRecriaController extends Controller {
     }  
  
     DB::commit();
-    return view('cria-recria.index', compact('lista2','temperatura','cria_recria','gallina_muerta','consumo'));
+    return view('cria-recria.index', compact('lista2','temperatura','cria_recria','gallina_muerta','consumo','silo'));
   } catch (Exception $e) {
      DB::rollback();
      return redirect('/')->with('message-error','A OCURRIDO UN ERROR');  

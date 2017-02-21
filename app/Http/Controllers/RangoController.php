@@ -29,12 +29,12 @@ class RangoController extends Controller {
 
     function cargar_tabla_rtemperatura() {
 
-        $rango_temperatura = DB::select("SELECT * from rango_temperatura where deleted_at IS NULL");
+        $rango_temperatura = DB::select("SELECT * from rango_temperatura where deleted_at IS NULL order by temp_min");
         return response()->json($rango_temperatura);
     }
 
     function cargar_tabla_redad() {
-        $rango_edad = DB::select("SELECT * from rango_edad where deleted_at IS NULL");
+        $rango_edad = DB::select("SELECT * from rango_edad where deleted_at IS NULL order by edad_min");
         return response()->json($rango_edad);
     }
 

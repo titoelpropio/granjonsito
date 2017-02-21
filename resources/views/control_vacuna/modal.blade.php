@@ -51,7 +51,6 @@
                 <td>EDAD</td>
                 <td>NOMBRE</td>
                 <TD>METODO DE APLICACION</TD>
-                <TD>SELECCIONAR</TD>
                 </thead>
 
                 

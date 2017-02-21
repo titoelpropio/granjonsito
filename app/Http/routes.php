@@ -63,6 +63,11 @@ Route::get('select_control_vacuna_ponedora','ControlVacunaController@select_cont
 Route::get('select_control_vacuna_fase','ControlVacunaController@select_control_vacuna_fase');
 Route::get('verificar_consumo_vacuna/{id_control_vac}','GalponController@verificar_consumo_vacuna');
 
+//CONSUMO VACUNAS
+Route::resource("consumo_vacuna","ConsumoVacunaController");
+Route::get("ver_consumo_vacuna","ConsumoVacunaController@index");
+Route::get("lista_consumo_vacuna_emergente/{id_edad}","ConsumoVacunaController@lista_consumo_vacuna_emergente");
+
 
 //CATEGORIA
 Route::resource('categoria','CategoriaController');
@@ -248,10 +253,15 @@ Route::get('obtener_fase/{tipe}', 'FasesGalponController@obtener_fases');
 Route::resource('alimento','AlimentoController');
 Route::get('alimento_estado','AlimentoController@update_estado_alimento');
 
-//consumo 
+//CONSUMO ALIMENTO
 Route::resource('consumo', 'ConsumoController');
+Route::get('consumo_alimento', 'ConsumoController@consumo_alimento');
+Route::get('lista_conusmo_alimento/{fecha_inicio}/{fecha_fin}', 'ConsumoController@lista_conusmo_alimento');
 Route::GET('consumo_edit/{id}', 'ConsumoController@edit');
 Route::GET('editar_consumo', 'ConsumoController@editar_consumo');
+Route::GET('eliminar_consumo/{id_consumo}', 'ConsumoController@destroy');
+
+
 
 //FASES 
 Route::resource('fases','FasesController');
@@ -332,3 +342,5 @@ Route::get('lista_de_silos_aux/{tipe}','GalponController@lista_de_silos_aux');
 Route::resource('vacuna_emergente','VacunaEmegerteController');
 Route::get('vacunae_emergente_estado','VacunaEmegerteController@cambiarestado');
 
+//CONSUMO VACUNA EMERGENTES
+Route::resource('consumo_vacuna_emergente','ConsumoVacunaEmergenteController');

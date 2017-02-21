@@ -16,9 +16,21 @@ $dias=0;
 ?>
 <input type="hidden" name="_token" value="{{ csrf_token()}}" id="token">
 <div class="row" style="height: 100%; width:100%"> 
+
+<table class="table table-striped table-bordered table-condensed table-hover">
+<thead>
+  @foreach($silo as $sil)
+<?php if ($sil->cantidad_minima > $sil->cantidad): ?>
+    <th style="background: #d73925; color: white; font-size: 12pt">  <center><samp>{{$sil->tipo}}:{{$sil->nombre}} ► {{$sil->cantidad}}Kg</samp></center></th>
+<?php else: ?>
+    <th style="background: #008d4c; color: white; font-size: 12pt">  <center><samp>{{$sil->tipo}}:{{$sil->nombre}} ► {{$sil->cantidad}}kg</samp></center></th>
+<?php endif ?>
+
+  @endforeach
+</thead>
+</table>
+
 <font size="5">TEMPERATURA: <span id="temperatura">{{$temperatura[0]->temperatura}}</span> ºC</font>
-
-
     <div class="col-sm-2 col-md-2  col-sm-2  col-xs-12 pull-right" style="width: 7%; margin: 0px; padding: 0px">
       <div class="form-group">
         <button class="btn btn-danger" onclick="mostrarcriamuertas()" id="btnmostrar" >MOSTRAR</button>                      
@@ -58,6 +70,7 @@ if (count($control)!=0) {
                  $cantidad_granel=$control[0]->cantidad;
                 }
                 else{
+                  $id=0;
                   $cantidad=0;
                   $cantidad_granel=0;
                   $alimento="";
@@ -66,7 +79,7 @@ if (count($control)!=0) {
                     else{ 
 
                       if (count($consumo)==0) {
-                        echo "<td colspan=1 align='center' class=xl83 style='border-left:none; width:10.75%'><button class='btn btn-success' data-toggle='modal' data-target='#myModal' onclick=cargar_modal(".$id.",".$gal->numero_fase.",".$gal->id_fase_galpon.",".$cantidad.",".$cantidad_granel.")><span data-status=1 id=id_alimento".$gal->numero_fase.">". $alimento.":</span> <span id=cantidad_g".$gal->numero_fase.">".$cantidad."</span> <span hidden id=c_granel_g".$gal->numero_fase.">". $cantidad_granel."</span> <span hidden id=id_control".$gal->numero_fase.">".$id."</span> kg. </button></td> ";
+                        echo "<td colspan=1 align='center' class=xl83 style='border-left:none; width:10.75%'><button class='btn btn-success' data-toggle='modal' data-target='#myModal' onclick=cargar_modal(".$id.",".$gal->numero_fase.",".$gal->id_fase_galpon.",".$cantidad.",".$cantidad_granel.")><span data-status=1 id=id_alimento".$gal->numero_fase.">". $alimento."</span>: <span id=cantidad_g".$gal->numero_fase.">".$cantidad."</span> <span hidden id=c_granel_g".$gal->numero_fase.">". $cantidad_granel."</span> <span hidden id=id_control".$gal->numero_fase.">".$id."</span> kg. </button></td> ";
                       } else {
                       if ($consumo[$contador_consumo]->numero_fase==$gal->numero_fase) {
                           echo "<td colspan=1 align='center' class=xl83 style='border-left:none; width:10.75%'><button disabled class='btn btn-danger' data-toggle='modal' data-target='#myModal' onclick=cargar_modal(".$id.",".$gal->numero_fase.",".$gal->id_fase_galpon.",".$cantidad.",".$cantidad_granel.")><span data-status=0 id=id_alimento".$gal->numero_fase.">".$consumo[$contador_consumo]->tipo.":</span> <span id=cantidad_g".$gal->numero_fase.">".$consumo[$contador_consumo]->cantidad."</span> <span hidden id=c_granel_g".$gal->numero_fase.">". $cantidad_granel."</span> <span hidden id=id_control".$gal->numero_fase.">".$id."</span> kg. </button></td> ";
@@ -74,7 +87,7 @@ if (count($control)!=0) {
                                 $contador_consumo++;                             
                             } 
                         } else {
-                          echo "<td colspan=1 align='center' class=xl83 style='border-left:none; width:10.75%'><button class='btn btn-success' data-toggle='modal' data-target='#myModal' onclick=cargar_modal(".$id.",".$gal->numero_fase.",".$gal->id_fase_galpon.",".$cantidad.",".$cantidad_granel.")><span data-status=1 id=id_alimento".$gal->numero_fase.">". $alimento.":</span> <span id=cantidad_g".$gal->numero_fase.">".$cantidad."</span> <span hidden id=c_granel_g".$gal->numero_fase.">". $cantidad_granel."</span> <span hidden id=id_control".$gal->numero_fase.">".$id."</span> kg. </button></td> ";
+                          echo "<td colspan=1 align='center' class=xl83 style='border-left:none; width:10.75%'><button class='btn btn-success' data-toggle='modal' data-target='#myModal' onclick=cargar_modal(".$id.",".$gal->numero_fase.",".$gal->id_fase_galpon.",".$cantidad.",".$cantidad_granel.")><span data-status=1 id=id_alimento".$gal->numero_fase.">". $alimento."</span>: <span id=cantidad_g".$gal->numero_fase.">".$cantidad."</span> <span hidden id=c_granel_g".$gal->numero_fase.">". $cantidad_granel."</span> <span hidden id=id_control".$gal->numero_fase.">".$id."</span> kg. </button></td> ";
                         }
                       }
                   }

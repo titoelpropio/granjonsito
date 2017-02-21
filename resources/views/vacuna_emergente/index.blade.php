@@ -3,6 +3,8 @@
 @include('alerts.cargando')
 @include('alerts.success')
 @include('alerts.request')
+@include('alerts.errors')
+
 @include('vacuna_emergente.modalagregar')
 
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -11,7 +13,8 @@
               <ul class="nav nav-pills">
                 <li class="active"><a href="{!!URL::to('vacuna')!!}">REGISTRAR VACUNAS</a></li>
                 <li class="active"><a href="{!!URL::to('lista_control_vacuna')!!}">LISTA DE CONTROL DE VACUNAS</a></li>  
-                <li class="active"><a href="{!!URL::to('vacuna_emergente')!!}">LISTA DE VACUNAS EMERGENTES</a></li>                      
+                <li class="active"><a href="{!!URL::to('vacuna_emergente')!!}">LISTA DE VACUNAS EMERGENTES</a></li>   
+                <li class="active"><a href="{!!URL::to('consumo_vacuna_emergente')!!}">LISTA DE CONSUMO VACUNAS</a></li>                                
             </ul>
         </div> 
     </div>
@@ -33,10 +36,10 @@
                     </thead>
 
                     @foreach ($vacuna as $vac)
-                    <TR>    
+                    <TR style="background-color:white" onmouseover="this.style.backgroundColor='#F6CED8'" onmouseout="this.style.backgroundColor='white'">    
                     <td align="center">{{$vac->nombre}}</td>
                     <td align="left">{{$vac->detalle}}</td>
-                    <td align="left">{{$vac->precio}}</td>
+                    <td align="center">{{$vac->precio}} Bs.</td>
                     <td align="center">  <?php
                         if ($vac->estado == 1) {
                             echo '<button value="' . $vac->id . '" id="idbotonnestado" onclick="cambiarestado(0,this)" class="btn btn-success">ACTIVO</button>';
@@ -45,7 +48,8 @@
                         ?></center></td>
                     <td align="center">
                         {!!link_to_route('vacuna_emergente.edit', $title = 'ACTUALIZAR', $parameters = $vac->id, $attributes = ['class'=>'btn btn-primary','style'=>'color: white'])!!}
-                        <button class="btn btn-info" data-toggle='modal' data-target='#ModalConsumoEmergente'>CONSUMIR VACUNA</button></td>
+                        <button class="btn btn-info" data-toggle='modal' data-target='#ModalConsumoEmergente' onclick="cargar_modal_vac_emer({{$vac->id}},{{$vac->precio}})">CONSUMIR VACUNA</button>
+                        <button class="btn btn-danger" data-toggle='modal' data-target='#ModalEliminarVacunaEmergente' onclick="CargarModalEmerEliminar({{$vac->id}})">ELIMINAR</button></td>
                     </TR>
                     @endforeach 
                 </table>

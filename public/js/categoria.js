@@ -31,3 +31,7 @@ function crear_categoria() {
     });
 }
 
+function EliminarGastos(id){
+    $("#id_gasto").val(id);
+}
+

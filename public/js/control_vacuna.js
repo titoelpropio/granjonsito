@@ -53,7 +53,7 @@ function confirmar_control_vacuna(){ //CONFIRMA SI VA A AGREGAR LAS VACUNAS
     for (var i = 0; i < cont; i++) {
         if($("#v_check"+i).is(':checked')) {  
             $("#confirmar_vacuna").append("<tr id=fila2["+i+"] align=center style='background-color:white' onmouseover='this.style.backgroundColor=\"#F6CED8\"' onmouseout='this.style.backgroundColor=\"white\"'>\n\
-            <td ><input type=hidden name=id_vacuna[] id=id_vacuna value="+id_vacuna[i]+" >"+edad[i]+"</td><td>"+nombre[i]+"</td><td>"+metodo[i]+"</td><td><input type='checkbox' style='-webkit-transform: scale(2);' id=v_check2"+check[i]+" value="+id_vacuna[i]+" checked></td></tr>");                          
+            <td ><input type=hidden name=id_vacuna[] id=id_vacuna value="+id_vacuna[i]+" >"+edad[i]+"</td><td>"+nombre[i]+"</td><td>"+metodo[i]+"</td></tr>");                          
         } 
     }
     $("#btn_confirmar").show();
@@ -85,6 +85,7 @@ function mostrar_vacunas(){
         var titulo =$('#id_galponcv option:selected').text();
         $("#xxx").text(titulo);
         $.get("ver_control_vacuna/"+id_edad,function(res){
+        $("#datos_vac").empty();            
             for (var i = 0; i < res.length; i++) {                        
                 if (res[i].estado==1) {
                      $("#datos_vac").append("<tr id=fila align=center style='background-color:white' onmouseover='this.style.backgroundColor=\"#F6CED8\"' onmouseout='this.style.backgroundColor=\"white\"'>\n\

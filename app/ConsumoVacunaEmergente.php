@@ -12,7 +12,7 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Consumo extends  Model implements AuthenticatableContract,
+class ConsumoVacunaEmergente extends  Model implements AuthenticatableContract,
                                     AuthorizableContract,
                                     CanResetPasswordContract
 {
@@ -23,14 +23,14 @@ class Consumo extends  Model implements AuthenticatableContract,
      *
      * @var string
      */
-    protected $table = 'consumo';
+    protected $table = 'consumo_emergente';
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['id_fase_galpon','id_control_alimento','cantidad','id_silo'];
+    protected $fillable = ['id_edad','id_vacuna','cantidad','precio','estado'];
     protected $dates = ['deleted_at'];
 
 }

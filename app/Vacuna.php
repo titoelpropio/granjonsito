@@ -27,7 +27,4 @@ class Vacuna  extends Model implements AuthenticatableContract,
 
 protected $dates = ['deleted_at'];
 
-	public function scopeBusqueda($query,$id){
-		$query->where('id',$id);
-	}
 }
