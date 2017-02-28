@@ -149,7 +149,7 @@ $(document).keypress(function (e) {
                                     success: function () {
                                         $('#cant_actual' + id).text(gallinas_actual);
                                         $('#muerta' + id).text(total_muerta);
-                                          alertify.success(" <img src='http://granja.local:8080/laravel/public/images/Gallo-Despertador.gif' style=' position: relative;height:100px; widht:100px '><samp><bold>GUARDADO</samp></span>"); //DESDE ACA ES LO DE LAS POSTURA
+                                          alertify.success(" <img src='http://granja.local:8080/laravel6/public/images/Gallo-Despertador.gif' style=' position: relative;height:100px; widht:100px '><samp><bold>GUARDADO</samp></span>"); //DESDE ACA ES LO DE LAS POSTURA
                                         $('#gmd' + id).text(gallina_muerta_diaria);
                                         $("#total_galpones" + id).text(total_huevo);
                                         $("#ph" + id).text(postura_huevo + " %");
@@ -160,13 +160,13 @@ $(document).keypress(function (e) {
                                     error: function (msj) {
                                         $('#loading').css("display", "none");
                                         alertify.alert("EROR", "NO SE PUDO GUARDAR LOS DATOS DEL GALPON " + id + " INTENTE NUEVAMENTE");
-                                        setTimeout("location.href='galpon'", 2000);
+                                   location.reload();
                                         valor = "0";
                                     }
                                 });
 
                             } else {//CUANDO NO INTRODUCE LAS MUERTAS VA POS ACA
-                                alertify.success(" <img src='http://granja.local:8080/laravel/public/images/Gallo-Despertador.gif' style=' position: relative;height:100px; widht:100px '><samp><bold>GUARDADO</samp></span>");
+                                alertify.success(" <img src='http://granja.local:8080/laravel6/public/images/Gallo-Despertador.gif' style=' position: relative;height:100px; widht:100px '><samp><bold>GUARDADO</samp></span>");
                                 $('#gmd' + id).text(gallina_muerta_diaria);
                                 $("#total_galpones" + id).text(total_huevo);
                                 $("#ph" + id).text(postura_huevo + " %");
@@ -176,8 +176,8 @@ $(document).keypress(function (e) {
                         },
                         error: function (msj) {
                             $('#loading').css("display", "none");
-                            alertify.alert("EROR", "NO SE PUDO GUARDAR LOS DATOS DEL GALPON " + id + " INTENTE NUEVAMENTE");
-                            setTimeout("location.href='galpon'", 2000);
+                            alertify.alert("ERROR", "NO SE PUDO GUARDAR LOS DATOS DEL GALPON " + id + " INTENTE NUEVAMENTE");
+                           location.reload();
                             valor = "0";
                         }
                     });

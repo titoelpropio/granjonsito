@@ -447,7 +447,7 @@ if (count($control)!=0) {
                              
                             } 
                         } else {
-                            echo "<td colspan=2 align='center' class=xl83 style='border-left:none; width:10.75%'><button class='btn btn-success' data-toggle='modal' data-target='#myModal' onclick=cargar_modal(".$id.",".$gal->numero.",".$gal->id_fase_galpon.",".$cantidad.",".$cantidad_granel.")><span data-status=1 id=id_alimento".$gal->numero.">". $alimento.":</span> <span data-status=1 id=cantidad_g".$gal->numero.">". $cantidad."</span> <span data-status=1 hidden id='c_granel_g".$gal->numero."'>". $cantidad_granel."</span> <span data-status=1 hidden id=id_control".$gal->numero.">".$id."</span> Kg. f</button></td> ";
+                            echo "<td colspan=2 align='center' class=xl83 style='border-left:none; width:10.75%'><button class='btn btn-success' data-toggle='modal' data-target='#myModal' onclick=cargar_modal(".$id.",".$gal->numero.",".$gal->id_fase_galpon.",".$cantidad.",".$cantidad_granel.")><span data-status=1 id=id_alimento".$gal->numero.">". $alimento.":</span> <span data-status=1 id=cantidad_g".$gal->numero.">". $cantidad."</span> <span data-status=1 hidden id='c_granel_g".$gal->numero."'>". $cantidad_granel."</span> <span data-status=1 hidden id=id_control".$gal->numero.">".$id."</span> Kg.</button></td> ";
                         }
                       }
                   }
